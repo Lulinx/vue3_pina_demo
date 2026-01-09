@@ -17,83 +17,83 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
-import ProvideInjectChild from './ProvideInjectChild.vue'
+  import { inject } from 'vue';
+  import ProvideInjectChild from './ProvideInjectChild.vue';
 
-const props = defineProps({
-  level: {
-    type: Number,
-    default: 1
-  }
-})
+  const props = defineProps({
+    level: {
+      type: Number,
+      default: 1,
+    },
+  });
 
-// 注入父组件提供的数据
-const injectionData = inject('injectionData')
+  // 注入父组件提供的数据
+  const injectionData = inject('injectionData');
 
-const changeTheme = () => {
-  if (injectionData) {
-    injectionData.theme = injectionData.theme === 'dark' ? 'light' : 'dark'
-  }
-}
+  const changeTheme = () => {
+    if (injectionData) {
+      injectionData.theme = injectionData.theme === 'dark' ? 'light' : 'dark';
+    }
+  };
 </script>
 
 <style scoped>
-.provide-inject-child {
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(0, 150, 136, 0.1);
-  border-radius: 6px;
-  border-left: 3px solid #009688;
-}
+  .provide-inject-child {
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(0, 150, 136, 0.1);
+    border-radius: 6px;
+    border-left: 3px solid #009688;
+  }
 
-.child-card {
-  padding: 12px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #009688;
-}
+  .child-card {
+    padding: 12px;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #009688;
+  }
 
-.child-card h5 {
-  color: #009688;
-  margin: 0 0 10px 0;
-  font-size: 0.95rem;
-}
+  .child-card h5 {
+    color: #009688;
+    margin: 0 0 10px 0;
+    font-size: 0.95rem;
+  }
 
-.injected-data {
-  padding: 10px;
-  background: #f1f8f7;
-  border-radius: 4px;
-  margin-bottom: 10px;
-}
+  .injected-data {
+    padding: 10px;
+    background: #f1f8f7;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
 
-.injected-data p {
-  margin: 5px 0;
-  font-size: 0.85rem;
-  color: #00796b;
-}
+  .injected-data p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+    color: #00796b;
+  }
 
-.actions {
-  display: flex;
-  gap: 8px;
-}
+  .actions {
+    display: flex;
+    gap: 8px;
+  }
 
-.btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-  font-size: 0.85rem;
-}
+  .btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+  }
 
-.btn-small {
-  background: #009688;
-  color: white;
-}
+  .btn-small {
+    background: #009688;
+    color: white;
+  }
 
-.btn-small:hover {
-  background: #00796b;
-  transform: translateY(-2px);
-}
+  .btn-small:hover {
+    background: #00796b;
+    transform: translateY(-2px);
+  }
 </style>

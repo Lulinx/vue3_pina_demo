@@ -59,140 +59,140 @@
 </template>
 
 <script setup>
-import CounterDemo from './components/CounterDemo.vue'
-import TodoDemo from './components/TodoDemo.vue'
-import UserDemo from './components/UserDemo.vue'
-import CartDemo from './components/CartDemo.vue'
-import AdvancedPiniaDemo from './components/AdvancedPiniaDemo.vue'
-import CommunicationGuide from './components/CommunicationGuide.vue'
+  import CounterDemo from './components/CounterDemo.vue';
+  import TodoDemo from './components/TodoDemo.vue';
+  import UserDemo from './components/UserDemo.vue';
+  import CartDemo from './components/CartDemo.vue';
+  import AdvancedPiniaDemo from './components/AdvancedPiniaDemo.vue';
+  import CommunicationGuide from './components/CommunicationGuide.vue';
 </script>
 
 <style scoped>
-.app-container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 40px 20px;
-}
-
-.app-header {
-  text-align: center;
-  color: white;
-  margin-bottom: 50px;
-  animation: slideDown 0.6s ease;
-}
-
-.app-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.app-header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-}
-
-.demos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: 30px;
-  margin-bottom: 40px;
-  max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.demo-card {
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  animation: fadeInUp 0.6s ease;
-}
-
-.demo-card h2 {
-  color: #667eea;
-  margin-bottom: 8px;
-  font-size: 1.5rem;
-}
-
-.subtitle {
-  color: #999;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-}
-
-.advanced-section {
-  margin-bottom: 40px;
-}
-
-.communication-section {
-  margin-bottom: 40px;
-}
-
-.app-footer {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 40px;
-  max-width: 1400px;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.app-footer h3 {
-  color: #667eea;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-}
-
-.concepts-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.concepts-list li {
-  background: #f5f5f5;
-  padding: 15px;
-  border-left: 4px solid #667eea;
-  border-radius: 4px;
-  line-height: 1.6;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
+  .app-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 40px 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-  .demos-grid {
-    grid-template-columns: 1fr;
+  .app-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+    animation: slideDown 0.6s ease;
   }
 
   .app-header h1 {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .app-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .demos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .demo-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.6s ease;
+  }
+
+  .demo-card h2 {
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    color: #999;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .advanced-section {
+    margin-bottom: 40px;
+  }
+
+  .communication-section {
+    margin-bottom: 40px;
+  }
+
+  .app-footer {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .app-footer h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
 
   .concepts-list {
-    grid-template-columns: 1fr;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
   }
-}
+
+  .concepts-list li {
+    background: #f5f5f5;
+    padding: 15px;
+    border-left: 4px solid #667eea;
+    border-radius: 4px;
+    line-height: 1.6;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .demos-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .app-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .concepts-list {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

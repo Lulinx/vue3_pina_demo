@@ -23,55 +23,55 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+  import { defineProps } from 'vue';
 
-// 定义 Props
-defineProps({
-  message: {
-    type: String,
-    required: true
-  },
-  count: {
-    type: Number,
-    default: 0
-  },
-  user: {
-    type: Object,
-    default: () => ({})
-  }
-})
+  // 定义 Props
+  defineProps({
+    message: {
+      type: String,
+      required: true,
+    },
+    count: {
+      type: Number,
+      default: 0,
+    },
+    user: {
+      type: Object,
+      default: () => ({}),
+    },
+  });
 </script>
 
 <style scoped>
-.child-component {
-  padding: 15px;
-  background: #f0f4ff;
-  border-radius: 6px;
-  border: 2px solid #667eea;
-}
+  .child-component {
+    padding: 15px;
+    background: #f0f4ff;
+    border-radius: 6px;
+    border: 2px solid #667eea;
+  }
 
-.child-component h4 {
-  color: #667eea;
-  margin-bottom: 12px;
-}
+  .child-component h4 {
+    color: #667eea;
+    margin-bottom: 12px;
+  }
 
-.prop-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
-  margin: 5px 0;
-  background: white;
-  border-radius: 4px;
-  border-left: 3px solid #667eea;
-}
+  .prop-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    margin: 5px 0;
+    background: white;
+    border-radius: 4px;
+    border-left: 3px solid #667eea;
+  }
 
-.label {
-  font-weight: 600;
-  color: #333;
-}
+  .label {
+    font-weight: 600;
+    color: #333;
+  }
 
-.value {
-  color: #667eea;
-  font-weight: 600;
-}
+  .value {
+    color: #667eea;
+    font-weight: 600;
+  }
 </style>

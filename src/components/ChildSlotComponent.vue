@@ -29,68 +29,68 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+  import { ref } from 'vue';
 
-const scopedMessage = ref('来自子组件的作用域插槽消息')
-const items = ref(['项目1', '项目2', '项目3'])
+  const scopedMessage = ref('来自子组件的作用域插槽消息');
+  const items = ref(['项目1', '项目2', '项目3']);
 </script>
 
 <style scoped>
-.child-slot-component {
-  padding: 15px;
-  background: #e8eaf6;
-  border-radius: 6px;
-  border: 2px solid #3f51b5;
-}
+  .child-slot-component {
+    padding: 15px;
+    background: #e8eaf6;
+    border-radius: 6px;
+    border: 2px solid #3f51b5;
+  }
 
-.slot-header {
-  padding: 10px;
-  background: #c5cae9;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  border-left: 3px solid #3f51b5;
-}
+  .slot-header {
+    padding: 10px;
+    background: #c5cae9;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 3px solid #3f51b5;
+  }
 
-.slot-header h4 {
-  color: #3f51b5;
-  margin: 0;
-}
+  .slot-header h4 {
+    color: #3f51b5;
+    margin: 0;
+  }
 
-.slot-content {
-  padding: 10px;
-  background: white;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  border-left: 3px solid #3f51b5;
-}
+  .slot-content {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 3px solid #3f51b5;
+  }
 
-.slot-content h4 {
-  color: #3f51b5;
-  margin: 0 0 10px 0;
-}
+  .slot-content h4 {
+    color: #3f51b5;
+    margin: 0 0 10px 0;
+  }
 
-.slot-footer {
-  padding: 10px;
-  background: #c5cae9;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  border-left: 3px solid #3f51b5;
-}
+  .slot-footer {
+    padding: 10px;
+    background: #c5cae9;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 3px solid #3f51b5;
+  }
 
-.slot-footer p {
-  color: #3f51b5;
-  margin: 0;
-}
+  .slot-footer p {
+    color: #3f51b5;
+    margin: 0;
+  }
 
-.slot-scoped {
-  padding: 10px;
-  background: white;
-  border-radius: 4px;
-  border-left: 3px solid #3f51b5;
-}
+  .slot-scoped {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    border-left: 3px solid #3f51b5;
+  }
 
-.slot-scoped h4 {
-  color: #3f51b5;
-  margin: 0 0 10px 0;
-}
+  .slot-scoped h4 {
+    color: #3f51b5;
+    margin: 0 0 10px 0;
+  }
 </style>

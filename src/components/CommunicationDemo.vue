@@ -219,240 +219,240 @@
 </template>
 
 <script setup>
-import { ref, reactive, provide } from 'vue'
-import { useCounterStore } from '@/stores/counterStore'
-import { useAdvancedStore } from '@/stores/advancedStore'
-import ChildComponent from './ChildComponent.vue'
-import ChildEmitComponent from './ChildEmitComponent.vue'
-import ChildVModelComponent from './ChildVModelComponent.vue'
-import ProvideInjectParent from './ProvideInjectParent.vue'
-import ChildSlotComponent from './ChildSlotComponent.vue'
-import ChildRefComponent from './ChildRefComponent.vue'
-import ChildAttrsComponent from './ChildAttrsComponent.vue'
+  import { ref, reactive, provide } from 'vue';
+  import { useCounterStore } from '@/stores/counterStore';
+  import { useAdvancedStore } from '@/stores/advancedStore';
+  import ChildComponent from './ChildComponent.vue';
+  import ChildEmitComponent from './ChildEmitComponent.vue';
+  import ChildVModelComponent from './ChildVModelComponent.vue';
+  import ProvideInjectParent from './ProvideInjectParent.vue';
+  import ChildSlotComponent from './ChildSlotComponent.vue';
+  import ChildRefComponent from './ChildRefComponent.vue';
+  import ChildAttrsComponent from './ChildAttrsComponent.vue';
 
-// Store
-const counterStore = useCounterStore()
-const advancedStore = useAdvancedStore()
+  // Store
+  const counterStore = useCounterStore();
+  const advancedStore = useAdvancedStore();
 
-// Props 示例数据
-const parentMessage = ref('👋 来自父组件的问候')
-const counter = ref(42)
-const userData = reactive({
-  name: '张三',
-  email: 'zhangsan@example.com',
-  role: 'admin'
-})
+  // Props 示例数据
+  const parentMessage = ref('👋 来自父组件的问候');
+  const counter = ref(42);
+  const userData = reactive({
+    name: '张三',
+    email: 'zhangsan@example.com',
+    role: 'admin',
+  });
 
-// Emit 示例
-const childMessage = ref('')
-const handleChildMessage = (message) => {
-  childMessage.value = message
-}
+  // Emit 示例
+  const childMessage = ref('');
+  const handleChildMessage = message => {
+    childMessage.value = message;
+  };
 
-// v-model 示例
-const formData = reactive({
-  title: '编辑这个标题',
-  content: '编辑这个内容'
-})
+  // v-model 示例
+  const formData = reactive({
+    title: '编辑这个标题',
+    content: '编辑这个内容',
+  });
 
-// ref 示例
-const childRef = ref(null)
-const childRefResult = ref('')
-const callChildMethod = () => {
-  if (childRef.value) {
-    childRefResult.value = childRef.value.doSomething()
-  }
-}
+  // ref 示例
+  const childRef = ref(null);
+  const childRefResult = ref('');
+  const callChildMethod = () => {
+    if (childRef.value) {
+      childRefResult.value = childRef.value.doSomething();
+    }
+  };
 
-// Provide/Inject 示例
-const injectionData = reactive({
-  theme: 'dark',
-  language: 'zh-CN',
-  user: { id: 1, name: '当前用户' }
-})
-provide('injectionData', injectionData)
+  // Provide/Inject 示例
+  const injectionData = reactive({
+    theme: 'dark',
+    language: 'zh-CN',
+    user: { id: 1, name: '当前用户' },
+  });
+  provide('injectionData', injectionData);
 </script>
 
 <style scoped>
-.communication-demo {
-  padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  min-height: 100vh;
-}
+  .communication-demo {
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+  }
 
-.communication-demo h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 30px;
-  font-size: 2rem;
-}
+  .communication-demo h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
 
-.section {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.section h3 {
-  color: #667eea;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #667eea;
-  padding-bottom: 10px;
-}
-
-.example {
-  margin: 20px 0;
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: 8px;
-  border-left: 4px solid #667eea;
-}
-
-.explanation {
-  margin-top: 15px;
-  padding: 15px;
-  background: #fffacd;
-  border-radius: 6px;
-  border-left: 4px solid #ffa500;
-}
-
-.explanation p {
-  margin: 8px 0;
-  color: #333;
-  line-height: 1.6;
-}
-
-.result {
-  padding: 10px;
-  background: #e8f5e9;
-  border-radius: 4px;
-  color: #2e7d32;
-  font-weight: 600;
-  margin: 10px 0;
-}
-
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-  margin-right: 10px;
-}
-
-.btn-primary {
-  background: #667eea;
-  color: white;
-}
-
-.btn-primary:hover {
-  background: #5568d3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.btn-secondary {
-  background: #e0e7ff;
-  color: #667eea;
-}
-
-.btn-secondary:hover {
-  background: #c7d2fe;
-}
-
-.store-info {
-  padding: 15px;
-  background: #e3f2fd;
-  border-radius: 6px;
-  border-left: 4px solid #2196f3;
-}
-
-.store-info p {
-  margin: 10px 0;
-  font-weight: 600;
-  color: #1976d2;
-}
-
-.store-cross-communication {
-  padding: 15px;
-  background: #f3e5f5;
-  border-radius: 6px;
-}
-
-.store-cross-communication p {
-  font-weight: 600;
-  color: #6a1b9a;
-  margin-top: 15px;
-}
-
-.store-cross-communication ul {
-  list-style: none;
-  padding-left: 20px;
-}
-
-.store-cross-communication li {
-  padding: 8px 0;
-  color: #6a1b9a;
-}
-
-.store-cross-communication li:before {
-  content: '✓ ';
-  color: #ab47bc;
-  font-weight: bold;
-}
-
-.code-section {
-  background: #1e1e1e;
-}
-
-.code-section h3 {
-  color: #4ec9b0;
-  border-bottom-color: #4ec9b0;
-}
-
-.communication-table {
-  width: 100%;
-  border-collapse: collapse;
-  color: #fff;
-  font-size: 0.9rem;
-}
-
-.communication-table thead {
-  background: #333;
-}
-
-.communication-table th {
-  padding: 15px;
-  text-align: left;
-  font-weight: 600;
-  color: #4ec9b0;
-}
-
-.communication-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #444;
-  color: #bbb;
-}
-
-.communication-table tbody tr:hover {
-  background: #2a2a2a;
-}
-
-@media (max-width: 768px) {
   .section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .section h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+  }
+
+  .example {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+  }
+
+  .explanation {
+    margin-top: 15px;
     padding: 15px;
+    background: #fffacd;
+    border-radius: 6px;
+    border-left: 4px solid #ffa500;
+  }
+
+  .explanation p {
+    margin: 8px 0;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .result {
+    padding: 10px;
+    background: #e8f5e9;
+    border-radius: 4px;
+    color: #2e7d32;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-right: 10px;
+  }
+
+  .btn-primary {
+    background: #667eea;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-secondary {
+    background: #e0e7ff;
+    color: #667eea;
+  }
+
+  .btn-secondary:hover {
+    background: #c7d2fe;
+  }
+
+  .store-info {
+    padding: 15px;
+    background: #e3f2fd;
+    border-radius: 6px;
+    border-left: 4px solid #2196f3;
+  }
+
+  .store-info p {
+    margin: 10px 0;
+    font-weight: 600;
+    color: #1976d2;
+  }
+
+  .store-cross-communication {
+    padding: 15px;
+    background: #f3e5f5;
+    border-radius: 6px;
+  }
+
+  .store-cross-communication p {
+    font-weight: 600;
+    color: #6a1b9a;
+    margin-top: 15px;
+  }
+
+  .store-cross-communication ul {
+    list-style: none;
+    padding-left: 20px;
+  }
+
+  .store-cross-communication li {
+    padding: 8px 0;
+    color: #6a1b9a;
+  }
+
+  .store-cross-communication li:before {
+    content: '✓ ';
+    color: #ab47bc;
+    font-weight: bold;
+  }
+
+  .code-section {
+    background: #1e1e1e;
+  }
+
+  .code-section h3 {
+    color: #4ec9b0;
+    border-bottom-color: #4ec9b0;
   }
 
   .communication-table {
-    font-size: 0.75rem;
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    font-size: 0.9rem;
   }
 
-  .communication-table th,
-  .communication-table td {
-    padding: 8px;
+  .communication-table thead {
+    background: #333;
   }
-}
+
+  .communication-table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #4ec9b0;
+  }
+
+  .communication-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #444;
+    color: #bbb;
+  }
+
+  .communication-table tbody tr:hover {
+    background: #2a2a2a;
+  }
+
+  @media (max-width: 768px) {
+    .section {
+      padding: 15px;
+    }
+
+    .communication-table {
+      font-size: 0.75rem;
+    }
+
+    .communication-table th,
+    .communication-table td {
+      padding: 8px;
+    }
+  }
 </style>

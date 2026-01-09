@@ -80,7 +80,12 @@
       <div class="demo-content">
         <div class="props-demo">
           <input v-model="parentData.message" type="text" placeholder="输入消息" class="input" />
-          <input v-model.number="parentData.count" type="number" placeholder="输入数字" class="input" />
+          <input
+            v-model.number="parentData.count"
+            type="number"
+            placeholder="输入数字"
+            class="input"
+          />
           <div class="object-input">
             <input v-model="parentData.user.name" placeholder="用户名" class="input" />
             <input v-model="parentData.user.email" placeholder="邮箱" class="input" />
@@ -209,7 +214,9 @@ const updateValue = (newValue) => {
                 <p>第二层孙组件</p>
                 <div class="nested-box-3" :style="{ backgroundColor: themeColorLighter }">
                   <p>第三层孙组件 - 直接访问祖先数据</p>
-                  <p class="injected-value">✓ 注入的主题: <strong>{{ provideData.theme }}</strong></p>
+                  <p class="injected-value">
+                    ✓ 注入的主题: <strong>{{ provideData.theme }}</strong>
+                  </p>
                 </div>
               </div>
             </div>
@@ -247,7 +254,9 @@ const theme = inject('theme', 'default') // 第二个参数是默认值
             <button @click="callChildMethod('reset')" class="btn">调用子组件重置</button>
           </div>
           <div class="result">
-            <p>子组件内部计数: <strong>{{ refDemoCounter }}</strong></p>
+            <p>
+              子组件内部计数: <strong>{{ refDemoCounter }}</strong>
+            </p>
             <p class="status">✓ 通过 Ref 直接调用子组件方法</p>
           </div>
         </div>
@@ -308,12 +317,8 @@ const callChildMethod = (method) => {
               <div class="slot-box header">
                 <strong>Header Slot</strong>
               </div>
-              <div class="slot-box body">
-                Body Slot Content
-              </div>
-              <div class="slot-box footer">
-                Footer Slot
-              </div>
+              <div class="slot-box body">Body Slot Content</div>
+              <div class="slot-box footer">Footer Slot</div>
             </div>
           </div>
           <div class="slot-example">
@@ -373,11 +378,7 @@ const callChildMethod = (method) => {
             </div>
           </div>
           <div class="attrs-input">
-            <input
-              v-bind="attrsData"
-              type="text"
-              class="attrs-input-field"
-            />
+            <input v-bind="attrsData" type="text" class="attrs-input-field" />
           </div>
         </div>
       </div>
@@ -493,676 +494,676 @@ const store = useCounterStore()
 </template>
 
 <script setup>
-import { ref, computed, provide } from 'vue'
-import { useCounterStore } from '@/stores/counterStore'
+  import { ref, computed, provide } from 'vue';
+  import { useCounterStore } from '@/stores/counterStore';
 
-// 1. Props 演示数据
-const parentData = ref({
-  message: 'Hello Vue3!',
-  count: 42,
-  user: {
-    name: '张三',
-    email: 'zhangsan@example.com'
-  }
-})
+  // 1. Props 演示数据
+  const parentData = ref({
+    message: 'Hello Vue3!',
+    count: 42,
+    user: {
+      name: '张三',
+      email: 'zhangsan@example.com',
+    },
+  });
 
-// 2. Emit 演示数据
-const childMessage = ref('')
-const handleChildEvent = (message) => {
-  childMessage.value = message
-}
+  // 2. Emit 演示数据
+  const childMessage = ref('');
+  const handleChildEvent = message => {
+    childMessage.value = message;
+  };
 
-// 3. v-model 演示数据
-const article = ref({
-  title: '深入理解 Vue3 组件通信',
-  content: '今天我们学习 Vue3 中的 8 种组件通信方式...'
-})
+  // 3. v-model 演示数据
+  const article = ref({
+    title: '深入理解 Vue3 组件通信',
+    content: '今天我们学习 Vue3 中的 8 种组件通信方式...',
+  });
 
-// 4. Provide/Inject 演示
-const provideData = ref({
-  theme: 'purple'
-})
+  // 4. Provide/Inject 演示
+  const provideData = ref({
+    theme: 'purple',
+  });
 
-const themeColor = computed(() => {
-  const colors = {
-    purple: '#667eea',
-    blue: '#3b82f6',
-    red: '#ef4444',
-    green: '#10b981'
-  }
-  return colors[provideData.value.theme] || '#667eea'
-})
+  const themeColor = computed(() => {
+    const colors = {
+      purple: '#667eea',
+      blue: '#3b82f6',
+      red: '#ef4444',
+      green: '#10b981',
+    };
+    return colors[provideData.value.theme] || '#667eea';
+  });
 
-const themeColorLight = computed(() => {
-  const theme = provideData.value.theme
-  const colors = {
-    purple: '#c5cae9',
-    blue: '#bfdbfe',
-    red: '#fecaca',
-    green: '#a7f3d0'
-  }
-  return colors[theme] || '#c5cae9'
-})
+  const themeColorLight = computed(() => {
+    const theme = provideData.value.theme;
+    const colors = {
+      purple: '#c5cae9',
+      blue: '#bfdbfe',
+      red: '#fecaca',
+      green: '#a7f3d0',
+    };
+    return colors[theme] || '#c5cae9';
+  });
 
-const themeColorLighter = computed(() => {
-  const theme = provideData.value.theme
-  const colors = {
-    purple: '#a7f3d0',
-    blue: '#fecaca',
-    red: '#bfdbfe',
-    green: '#f0fdf4'
-  }
-  return colors[theme] || '#e8eaf6'
-})
+  const themeColorLighter = computed(() => {
+    const theme = provideData.value.theme;
+    const colors = {
+      purple: '#a7f3d0',
+      blue: '#fecaca',
+      red: '#bfdbfe',
+      green: '#f0fdf4',
+    };
+    return colors[theme] || '#e8eaf6';
+  });
 
-provide('injectedData', provideData)
+  provide('injectedData', provideData);
 
-// 5. Ref/Expose 演示
-const refDemoCounter = ref(0)
-const childRef = ref(null)
+  // 5. Ref/Expose 演示
+  const refDemoCounter = ref(0);
+  const childRef = ref(null);
 
-const callChildMethod = (method) => {
-  if (method === 'increment') refDemoCounter.value++
-  else if (method === 'decrement') refDemoCounter.value--
-  else if (method === 'reset') refDemoCounter.value = 0
-}
+  const callChildMethod = method => {
+    if (method === 'increment') refDemoCounter.value++;
+    else if (method === 'decrement') refDemoCounter.value--;
+    else if (method === 'reset') refDemoCounter.value = 0;
+  };
 
-// 6. Slots 演示
-const scopedItems = ref([
-  { id: 1, name: '笔记本', category: '电子', price: 8999 },
-  { id: 2, name: '鼠标', category: '配件', price: 299 },
-  { id: 3, name: '键盘', category: '配件', price: 599 }
-])
+  // 6. Slots 演示
+  const scopedItems = ref([
+    { id: 1, name: '笔记本', category: '电子', price: 8999 },
+    { id: 2, name: '鼠标', category: '配件', price: 299 },
+    { id: 3, name: '键盘', category: '配件', price: 599 },
+  ]);
 
-// 7. $attrs 演示
-const attrsData = ref({
-  'data-test': 'demo-input',
-  placeholder: '输入你的内容...',
-  maxlength: '50'
-})
+  // 7. $attrs 演示
+  const attrsData = ref({
+    'data-test': 'demo-input',
+    placeholder: '输入你的内容...',
+    maxlength: '50',
+  });
 
-// 8. Store 演示
-const store = useCounterStore()
-const globalCounter = computed(() => store.count)
-const isEvenCounter = computed(() => store.count % 2 === 0)
+  // 8. Store 演示
+  const store = useCounterStore();
+  const globalCounter = computed(() => store.count);
+  const isEvenCounter = computed(() => store.count % 2 === 0);
 
-const incrementStoreCounter = () => store.increment()
-const decrementStoreCounter = () => store.decrement()
-const resetStoreCounter = () => store.$reset()
+  const incrementStoreCounter = () => store.increment();
+  const decrementStoreCounter = () => store.decrement();
+  const resetStoreCounter = () => store.$reset();
 </script>
 
 <style scoped>
-.communication-demo {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.communication-demo h2 {
-  text-align: center;
-  color: #667eea;
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.intro {
-  text-align: center;
-  color: #999;
-  margin-bottom: 30px;
-  font-size: 1.1rem;
-}
-
-/* 对比表 */
-.comparison-section {
-  margin-bottom: 40px;
-}
-
-.comparison-section h3 {
-  color: #667eea;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #667eea;
-  padding-bottom: 10px;
-}
-
-.table-wrapper {
-  overflow-x: auto;
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-.comparison-table thead {
-  background: #667eea;
-  color: white;
-}
-
-.comparison-table th {
-  padding: 12px;
-  text-align: left;
-  font-weight: 600;
-}
-
-.comparison-table td {
-  padding: 12px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.comparison-table tbody tr:hover {
-  background: #f9fafb;
-}
-
-.comparison-table tr:last-child td {
-  border-bottom: none;
-}
-
-/* Demo 部分 */
-.demo-section {
-  margin-bottom: 40px;
-  padding: 25px;
-  background: #f9fafb;
-  border-radius: 8px;
-  border-left: 4px solid #667eea;
-}
-
-.demo-section h3 {
-  color: #667eea;
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-}
-
-.description {
-  background: white;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  border-left: 4px solid #e8eaf6;
-}
-
-.description p {
-  margin: 8px 0;
-  color: #333;
-  line-height: 1.6;
-}
-
-.demo-content {
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-/* Props 演示 */
-.props-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.object-input {
-  display: flex;
-  gap: 10px;
-}
-
-.input {
-  padding: 8px 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  flex: 1;
-}
-
-.input:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.input-small {
-  padding: 6px 10px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  width: 120px;
-}
-
-.child-container {
-  border: 2px dashed #667eea;
-  padding: 15px;
-  border-radius: 6px;
-  background: #f0f4ff;
-}
-
-.comment {
-  color: #999;
-  font-size: 0.85rem;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-.child-demo {
-  padding: 10px;
-  background: white;
-  border-radius: 4px;
-}
-
-.child-demo p {
-  margin: 8px 0;
-  font-size: 0.95rem;
-}
-
-/* Emit 演示 */
-.emit-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.btn {
-  padding: 10px 20px;
-  background: #667eea;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-
-.btn:hover {
-  background: #5568d3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-}
-
-.received-message {
-  padding: 12px;
-  background: #d4edda;
-  color: #155724;
-  border-left: 4px solid #28a745;
-  border-radius: 4px;
-}
-
-/* v-model 演示 */
-.vmodel-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group label {
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #333;
-}
-
-.textarea {
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 0.95rem;
-  min-height: 120px;
-  resize: vertical;
-}
-
-.textarea:focus {
-  outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-}
-
-.char-count {
-  font-size: 0.85rem;
-  color: #999;
-  margin-top: 4px;
-}
-
-.preview {
-  padding: 15px;
-  background: #f0f4ff;
-  border-radius: 6px;
-}
-
-.preview h4 {
-  margin: 0 0 12px 0;
-  color: #667eea;
-}
-
-.preview-content {
-  padding: 12px;
-  background: white;
-  border-radius: 4px;
-  border-left: 4px solid #667eea;
-}
-
-.preview-content h5 {
-  margin: 0 0 8px 0;
-  color: #333;
-}
-
-.preview-content p {
-  margin: 0;
-  color: #666;
-  line-height: 1.6;
-}
-
-/* Provide/Inject 演示 */
-.provide-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.provide-box {
-  padding: 20px;
-  border: 2px solid #667eea;
-  border-radius: 8px;
-  background: white;
-}
-
-.provide-box h4 {
-  color: #667eea;
-  margin-top: 0;
-}
-
-.provide-box > p {
-  margin: 0 0 15px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nested-box,
-.nested-box-2,
-.nested-box-3 {
-  padding: 15px;
-  border-radius: 6px;
-  margin-top: 10px;
-  color: white;
-}
-
-.nested-box p,
-.nested-box-2 p,
-.nested-box-3 p {
-  margin: 8px 0;
-  font-weight: 600;
-}
-
-.injected-value {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 0.9rem;
-}
-
-/* Ref/Expose 演示 */
-.ref-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.controls {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.result {
-  padding: 15px;
-  background: #e8eaf6;
-  border-radius: 6px;
-  border-left: 4px solid #667eea;
-}
-
-.result p {
-  margin: 8px 0;
-  color: #333;
-  font-size: 0.95rem;
-}
-
-.status {
-  color: #667eea;
-  font-weight: 600;
-}
-
-/* Slots 演示 */
-.slots-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.slot-example {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.slot-example h4 {
-  color: #667eea;
-  margin: 0;
-}
-
-.slot-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.slot-box {
-  padding: 12px;
-  background: #f0f4ff;
-  border-radius: 4px;
-  border-left: 4px solid #667eea;
-  color: #333;
-}
-
-.slot-box.header {
-  background: #e8eaf6;
-}
-
-.slot-box.body {
-  background: #f0f4ff;
-}
-
-.slot-box.footer {
-  background: #e8eaf6;
-}
-
-.slot-box.scoped {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: white;
-  border: 1px solid #e5e7eb;
-}
-
-.badge {
-  display: inline-block;
-  padding: 2px 8px;
-  background: #667eea;
-  color: white;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-.value {
-  margin-left: auto;
-  color: #667eea;
-  font-weight: 600;
-}
-
-/* $attrs 演示 */
-.attrs-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.attrs-info {
-  padding: 15px;
-  background: #f0f4ff;
-  border-radius: 6px;
-}
-
-.attrs-info h4 {
-  color: #667eea;
-  margin: 0 0 12px 0;
-}
-
-.attrs-display {
-  padding: 12px;
-  background: white;
-  border-radius: 4px;
-  border-left: 4px solid #667eea;
-}
-
-.attrs-display p {
-  margin: 6px 0;
-  font-size: 0.9rem;
-}
-
-.attrs-input {
-  display: flex;
-}
-
-.attrs-input-field {
-  padding: 10px 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  width: 100%;
-  font-size: 0.95rem;
-}
-
-/* Store 演示 */
-.store-demo {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.store-actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.store-info {
-  padding: 15px;
-  background: #e8eaf6;
-  border-radius: 6px;
-  border-left: 4px solid #667eea;
-}
-
-.store-info p {
-  margin: 8px 0;
-  color: #333;
-  font-size: 0.95rem;
-}
-
-/* 代码块 */
-pre {
-  background: #1e1e1e;
-  color: #d4d4d4;
-  padding: 15px;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin: 0;
-}
-
-code {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-}
-
-/* 总结部分 */
-.summary-section {
-  background: #fff3e0;
-  padding: 25px;
-  border-radius: 8px;
-  border-left: 4px solid #ff9800;
-  margin-top: 40px;
-}
-
-.summary-section h3 {
-  color: #e65100;
-  margin-bottom: 20px;
-}
-
-.guidelines {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.guideline-item {
-  background: white;
-  padding: 15px;
-  border-radius: 6px;
-}
-
-.guideline-item h4 {
-  color: #e65100;
-  margin: 0 0 12px 0;
-}
-
-.guideline-item ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.guideline-item li {
-  padding: 6px 0;
-  color: #333;
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
   .communication-demo {
-    padding: 20px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 1200px;
   }
 
   .communication-demo h2 {
-    font-size: 1.5rem;
+    text-align: center;
+    color: #667eea;
+    font-size: 2rem;
+    margin-bottom: 10px;
   }
 
-  .comparison-table th,
+  .intro {
+    text-align: center;
+    color: #999;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+  }
+
+  /* 对比表 */
+  .comparison-section {
+    margin-bottom: 40px;
+  }
+
+  .comparison-section h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  .comparison-table thead {
+    background: #667eea;
+    color: white;
+  }
+
+  .comparison-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+
   .comparison-table td {
-    padding: 8px 4px;
-    font-size: 0.85rem;
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
   }
 
+  .comparison-table tbody tr:hover {
+    background: #f9fafb;
+  }
+
+  .comparison-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Demo 部分 */
   .demo-section {
+    margin-bottom: 40px;
+    padding: 25px;
+    background: #f9fafb;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+  }
+
+  .demo-section h3 {
+    color: #667eea;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+  }
+
+  .description {
+    background: white;
     padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #e8eaf6;
+  }
+
+  .description p {
+    margin: 8px 0;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .demo-content {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+  }
+
+  /* Props 演示 */
+  .props-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
   .object-input {
-    flex-direction: column;
+    display: flex;
+    gap: 10px;
   }
 
-  .controls {
+  .input {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    flex: 1;
+  }
+
+  .input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .input-small {
+    padding: 6px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    width: 120px;
+  }
+
+  .child-container {
+    border: 2px dashed #667eea;
+    padding: 15px;
+    border-radius: 6px;
+    background: #f0f4ff;
+  }
+
+  .comment {
+    color: #999;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .child-demo {
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+  }
+
+  .child-demo p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+  }
+
+  /* Emit 演示 */
+  .emit-demo {
+    display: flex;
     flex-direction: column;
+    gap: 15px;
   }
 
   .btn {
-    width: 100%;
+    padding: 10px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
   }
-}
+
+  .btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  }
+
+  .received-message {
+    padding: 12px;
+    background: #d4edda;
+    color: #155724;
+    border-left: 4px solid #28a745;
+    border-radius: 4px;
+  }
+
+  /* v-model 演示 */
+  .vmodel-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .textarea {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+
+  .char-count {
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 4px;
+  }
+
+  .preview {
+    padding: 15px;
+    background: #f0f4ff;
+    border-radius: 6px;
+  }
+
+  .preview h4 {
+    margin: 0 0 12px 0;
+    color: #667eea;
+  }
+
+  .preview-content {
+    padding: 12px;
+    background: white;
+    border-radius: 4px;
+    border-left: 4px solid #667eea;
+  }
+
+  .preview-content h5 {
+    margin: 0 0 8px 0;
+    color: #333;
+  }
+
+  .preview-content p {
+    margin: 0;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* Provide/Inject 演示 */
+  .provide-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .provide-box {
+    padding: 20px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    background: white;
+  }
+
+  .provide-box h4 {
+    color: #667eea;
+    margin-top: 0;
+  }
+
+  .provide-box > p {
+    margin: 0 0 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nested-box,
+  .nested-box-2,
+  .nested-box-3 {
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 10px;
+    color: white;
+  }
+
+  .nested-box p,
+  .nested-box-2 p,
+  .nested-box-3 p {
+    margin: 8px 0;
+    font-weight: 600;
+  }
+
+  .injected-value {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  /* Ref/Expose 演示 */
+  .ref-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .result {
+    padding: 15px;
+    background: #e8eaf6;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+  }
+
+  .result p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  .status {
+    color: #667eea;
+    font-weight: 600;
+  }
+
+  /* Slots 演示 */
+  .slots-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .slot-example {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slot-example h4 {
+    color: #667eea;
+    margin: 0;
+  }
+
+  .slot-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .slot-box {
+    padding: 12px;
+    background: #f0f4ff;
+    border-radius: 4px;
+    border-left: 4px solid #667eea;
+    color: #333;
+  }
+
+  .slot-box.header {
+    background: #e8eaf6;
+  }
+
+  .slot-box.body {
+    background: #f0f4ff;
+  }
+
+  .slot-box.footer {
+    background: #e8eaf6;
+  }
+
+  .slot-box.scoped {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    border: 1px solid #e5e7eb;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #667eea;
+    color: white;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .value {
+    margin-left: auto;
+    color: #667eea;
+    font-weight: 600;
+  }
+
+  /* $attrs 演示 */
+  .attrs-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .attrs-info {
+    padding: 15px;
+    background: #f0f4ff;
+    border-radius: 6px;
+  }
+
+  .attrs-info h4 {
+    color: #667eea;
+    margin: 0 0 12px 0;
+  }
+
+  .attrs-display {
+    padding: 12px;
+    background: white;
+    border-radius: 4px;
+    border-left: 4px solid #667eea;
+  }
+
+  .attrs-display p {
+    margin: 6px 0;
+    font-size: 0.9rem;
+  }
+
+  .attrs-input {
+    display: flex;
+  }
+
+  .attrs-input-field {
+    padding: 10px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* Store 演示 */
+  .store-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .store-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .store-info {
+    padding: 15px;
+    background: #e8eaf6;
+    border-radius: 6px;
+    border-left: 4px solid #667eea;
+  }
+
+  .store-info p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  /* 代码块 */
+  pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  code {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  }
+
+  /* 总结部分 */
+  .summary-section {
+    background: #fff3e0;
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #ff9800;
+    margin-top: 40px;
+  }
+
+  .summary-section h3 {
+    color: #e65100;
+    margin-bottom: 20px;
+  }
+
+  .guidelines {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .guideline-item {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+  }
+
+  .guideline-item h4 {
+    color: #e65100;
+    margin: 0 0 12px 0;
+  }
+
+  .guideline-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .guideline-item li {
+    padding: 6px 0;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .communication-demo {
+      padding: 20px;
+    }
+
+    .communication-demo h2 {
+      font-size: 1.5rem;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 8px 4px;
+      font-size: 0.85rem;
+    }
+
+    .demo-section {
+      padding: 15px;
+    }
+
+    .object-input {
+      flex-direction: column;
+    }
+
+    .controls {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
 </style>
