@@ -288,7 +288,8 @@ const result = otherStore.someMethod()</code></pre>
   .advanced-pinia-demo {
     padding: 20px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .advanced-pinia-demo h2 {

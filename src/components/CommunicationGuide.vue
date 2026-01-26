@@ -595,11 +595,9 @@ const store = useCounterStore()
 <style scoped>
   .communication-demo {
     background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    max-width: 1200px;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .communication-demo h2 {

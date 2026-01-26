@@ -155,6 +155,9 @@ const handleCheckout = () => {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .products-section h3,
