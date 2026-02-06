@@ -60,7 +60,14 @@ const navItems = [
     items: [
       { key: 'taro', label: 'Taro 基础知识', icon: '📱' },
       { key: 'nuxt', label: 'NUXT.JS 基础知识', icon: '🚀' },
-      { key: 'flutter', label: 'Flutter 基础知识', icon: '🦋' }
+      { key: 'flutter', label: 'Flutter 基础知识', icon: '🦋' },
+      { key: 'webgl', label: 'WebGL 基础知识', icon: '🎨' }
+    ]
+  },
+  {
+    title: '🎯 面试与进阶',
+    items: [
+      { key: 'interview', label: '各大厂面试题', icon: '🎯' }
     ]
   }
 ];

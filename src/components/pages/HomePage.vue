@@ -2,7 +2,7 @@
   <div class="home-page">
     <div class="hero-section">
       <h1>🎓 前端知识文档网站</h1>
-      <p class="subtitle">Vue3、Pinia、Taro、NUXT.JS、Flutter 完整学习指南</p>
+      <p class="subtitle">Vue3、Pinia、Taro、NUXT.JS、Flutter、WebGL、高频面试题 完整学习指南</p>
     </div>
 
     <div class="content-grid">
@@ -71,6 +71,32 @@
           <li>调试、性能与发布</li>
         </ul>
       </div>
+
+      <div class="category-card" @click="navigateTo?.('webgl')">
+        <div class="card-icon">🎨</div>
+        <h3>WebGL 基础知识</h3>
+        <p>现代浏览器三维可视化核心技术，理论+实践全面入门</p>
+        <ul class="card-list">
+          <li>WebGL 基本原理</li>
+          <li>渲染管线与着色器简介</li>
+          <li>缓冲区、纹理、几何数据</li>
+          <li>GLSL 语法基础</li>
+          <li>用 Three.js 实现 3D 可视化</li>
+        </ul>
+      </div>
+
+      <div class="category-card" @click="navigateTo?.('interview')">
+        <div class="card-icon">🎯</div>
+        <h3>各大厂面试题</h3>
+        <p>华为、小米、字节、百度等大厂前端高级工程师高频面试题详解</p>
+        <ul class="card-list">
+          <li>架构设计与性能优化</li>
+          <li>算法与数据结构</li>
+          <li>系统设计与工程化</li>
+          <li>浏览器原理深度剖析</li>
+          <li>结构化答题技巧</li>
+        </ul>
+      </div>
     </div>
 
     <div class="features-section">
@@ -79,22 +105,32 @@
         <div class="feature-item">
           <div class="feature-icon">📖</div>
           <h4>详细文档</h4>
-          <p>每个知识点都有详细的讲解和代码示例</p>
+          <p>每个知识点、面试题都有详细讲解和代码示例</p>
         </div>
         <div class="feature-item">
           <div class="feature-icon">💻</div>
           <h4>实战演示</h4>
-          <p>提供可运行的代码示例，边学边练</p>
+          <p>提供可运行的代码、面试算法和WebGL实践，边学边练</p>
         </div>
         <div class="feature-item">
           <div class="feature-icon">🎯</div>
           <h4>系统学习</h4>
-          <p>从基础到高级，循序渐进的学习路径</p>
+          <p>从基础到高级，理论+面试+实战，循序渐进</p>
         </div>
         <div class="feature-item">
           <div class="feature-icon">🔍</div>
           <h4>快速查找</h4>
-          <p>左侧目录导航，快速定位知识点</p>
+          <p>左侧目录导航，快速定位各类知识点与大厂题目</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🏢</div>
+          <h4>大厂真题专栏</h4>
+          <p>搜集整理一线互联网公司（华为、小米、字节、百度等）前端面试真题</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🌐</div>
+          <h4>WebGL 专业讲解</h4>
+          <p>基础原理+实践案例，助力可视化与三维开发能力提升</p>
         </div>
       </div>
     </div>
