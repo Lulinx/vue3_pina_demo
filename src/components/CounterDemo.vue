@@ -20,7 +20,7 @@
     <div class="actions">
       <button @click="counterStore.decrement" class="btn btn-primary">-1</button>
       <button @click="counterStore.increment" class="btn btn-primary">+1</button>
-      <button @click="() => counterStore.addAmount(5)" class="btn btn-primary">+5</button>
+      <button @click="counterStore.addAmount(5)" class="btn btn-primary">+5</button>
       <button @click="counterStore.reset" class="btn btn-danger">重置</button>
     </div>
 

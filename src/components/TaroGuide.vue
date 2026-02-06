@@ -795,6 +795,125 @@ Button.defaultProps = {
           </div>
         </div>
       </section>
+
+      <!-- 16. 工程化配置与多端构建 -->
+      <section class="guide-section">
+        <h2>1️⃣6️⃣ 工程化配置与多端构建</h2>
+        <div class="content-box">
+          <p>在真实项目里，Taro 的“好用”来自于它的<strong>工程化能力</strong>：多端构建、环境变量、别名、样式方案、编译优化等。</p>
+
+          <h3>16.1 常见配置文件</h3>
+          <pre v-pre class="code-block"><code>config/
+├── index.js   # 通用配置（别名、defineConstants、mini/h5 配置等）
+├── dev.js     # 开发环境配置
+└── prod.js    # 生产环境配置</code></pre>
+
+          <h3>16.2 常见 build 命令（示例）</h3>
+          <pre v-pre class="code-block"><code># 微信小程序
+npm run build:weapp
+npm run dev:weapp
+
+# H5
+npm run build:h5
+npm run dev:h5
+
+# 支付宝小程序
+npm run build:alipay</code></pre>
+
+          <h3>16.3 环境变量与区分环境</h3>
+          <pre v-pre class="code-block"><code>// 根据环境读取不同的 API Base
+const isProd = process.env.NODE_ENV === 'production'
+const baseURL = isProd ? 'https://api.xxx.com' : 'https://api-dev.xxx.com'</code></pre>
+        </div>
+      </section>
+
+      <!-- 17. 跨端兼容：环境判断 & 条件编译 -->
+      <section class="guide-section">
+        <h2>1️⃣7️⃣ 跨端兼容：环境判断 & 条件编译</h2>
+        <div class="content-box">
+          <h3>17.1 获取当前运行环境</h3>
+          <pre v-pre class="code-block"><code>import Taro from '@tarojs/taro'
+
+const env = Taro.getEnv()
+// env 可能是：Taro.ENV_TYPE.WEAPP / H5 / ALIPAY / ...
+if (env === Taro.ENV_TYPE.WEAPP) {
+  // 微信特性逻辑
+}</code></pre>
+
+          <h3>17.2 条件编译（把平台差异“隔离”起来）</h3>
+          <p>不同端的 API/行为不一致时，推荐把差异收敛到少数文件/模块里，用条件编译输出不同实现。</p>
+          <pre v-pre class="code-block"><code>// 伪代码：根据 TARO_ENV 分支（示意）
+if (process.env.TARO_ENV === 'h5') {
+  // H5 特有
+} else {
+  // 小程序特有
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- 18. 请求封装：统一错误处理/鉴权/重试 -->
+      <section class="guide-section">
+        <h2>1️⃣8️⃣ 请求封装：统一错误处理/鉴权/重试</h2>
+        <div class="content-box">
+          <p>不要在每个页面里散落 <code>Taro.request</code>。推荐封装一个 <strong>request</strong>，统一处理：</p>
+          <ul class="feature-list">
+            <li>token 注入、登录态失效处理</li>
+            <li>HTTP 错误、业务错误统一提示</li>
+            <li>loading 控制、请求节流/取消（按需）</li>
+          </ul>
+
+          <pre v-pre class="code-block"><code>// utils/request.js（示意）
+import Taro from '@tarojs/taro'
+
+export async function request(options) {
+  try {
+    const token = Taro.getStorageSync('token')
+    const res = await Taro.request({
+      ...options,
+      header: {
+        ...(options.header || {}),
+        Authorization: token ? `Bearer ${token}` : ''
+      }
+    })
+
+    // 业务层 code 判断（按你的后端约定）
+    if (res.data && res.data.code !== 0) {
+      throw new Error(res.data.message || '业务错误')
+    }
+    return res.data
+  } catch (err) {
+    Taro.showToast({ title: err.message || '请求失败', icon: 'none' })
+    throw err
+  }
+}</code></pre>
+        </div>
+      </section>
+
+      <!-- 19. 性能与包体积：分包、图片、列表 -->
+      <section class="guide-section">
+        <h2>1️⃣9️⃣ 性能与包体积：分包、图片、列表</h2>
+        <div class="content-box">
+          <h3>19.1 分包（Subpackages）</h3>
+          <pre v-pre class="code-block"><code>// app.config.js（示意）
+export default {
+  pages: ['pages/index/index'],
+  subpackages: [
+    {
+      root: 'packageA',
+      pages: ['pages/detail/index', 'pages/order/index']
+    }
+  ]
+}</code></pre>
+
+          <h3>19.2 常见优化建议</h3>
+          <ul class="practice-list">
+            <li><strong>列表渲染</strong>：避免一次性渲染过多节点，分批/分页加载</li>
+            <li><strong>图片</strong>：压缩、选择合适格式、懒加载、减少大图</li>
+            <li><strong>避免频繁 setState</strong>：合并更新、减少无意义重渲染</li>
+            <li><strong>分包</strong>：把低频页面放到分包，减小主包体积</li>
+          </ul>
+        </div>
+      </section>
     </div>
   </div>
 </template>

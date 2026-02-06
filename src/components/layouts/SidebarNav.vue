@@ -41,6 +41,10 @@ const navItems = [
     ]
   },
   {
+    title: '🧩 语言与工程',
+    items: [{ key: 'typescript', label: 'TypeScript 重点详解', icon: '🟦' }]
+  },
+  {
     title: '📘 Vue3 + Pinia',
     items: [
       { key: 'pinia-counter', label: '基础计数器', icon: '🔢' },
@@ -55,7 +59,8 @@ const navItems = [
     title: '📱 框架知识',
     items: [
       { key: 'taro', label: 'Taro 基础知识', icon: '📱' },
-      { key: 'nuxt', label: 'NUXT.JS 基础知识', icon: '🚀' }
+      { key: 'nuxt', label: 'NUXT.JS 基础知识', icon: '🚀' },
+      { key: 'flutter', label: 'Flutter 基础知识', icon: '🦋' }
     ]
   }
 ];

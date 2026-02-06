@@ -650,6 +650,109 @@ server {
           </div>
         </div>
       </section>
+
+      <!-- 15. Nuxt3 核心：Nitro & Server API -->
+      <section class="guide-section">
+        <h2>1️⃣5️⃣ Nuxt3 核心：Nitro & Server API</h2>
+        <div class="content-box">
+          <p>
+            Nuxt3 的后端能力来自 <strong>Nitro</strong>：你可以在同一个项目里写服务端 API（Server Routes），实现“前后端一体”的小型服务。
+            这对文档站、后台、BFF、简单业务非常实用。
+          </p>
+
+          <h3>15.1 server/api 示例（REST 风格）</h3>
+          <pre v-pre class="code-block"><code>server/
+└── api/
+    ├── hello.get.ts
+    └── users/
+        └── [id].get.ts</code></pre>
+
+          <pre v-pre class="code-block"><code>// server/api/hello.get.ts
+export default defineEventHandler(() => {
+  return { ok: true, message: 'hello from nitro' }
+})</code></pre>
+
+          <h3>15.2 在页面里调用（useFetch / $fetch）</h3>
+          <pre v-pre class="code-block"><code>&lt;script setup&gt;
+const { data, pending, error } = await useFetch('/api/hello')
+// 或：
+// const res = await $fetch('/api/hello')
+&lt;/script&gt;</code></pre>
+
+          <h3>15.3 统一错误返回（示意）</h3>
+          <pre v-pre class="code-block"><code>export default defineEventHandler(async () => {
+  const user = null
+  if (!user) {
+    throw createError({ statusCode: 404, statusMessage: 'User not found' })
+  }
+  return user
+})</code></pre>
+        </div>
+      </section>
+
+      <!-- 16. Composables：把可复用逻辑写成 useXxx -->
+      <section class="guide-section">
+        <h2>1️⃣6️⃣ Composables：把可复用逻辑写成 useXxx</h2>
+        <div class="content-box">
+          <p>Nuxt 会自动导入 <code>composables/</code> 下的函数，你可以像用内置的 <code>useFetch</code> 一样使用自己的 <code>useXXX</code>。</p>
+          <pre v-pre class="code-block"><code>// composables/useCounter.ts
+export function useCounter() {
+  const count = useState('count', () => 0)
+  const inc = () => count.value++
+  const reset = () => (count.value = 0)
+  return { count, inc, reset }
+}
+
+// 任意页面/组件中
+const { count, inc } = useCounter()</code></pre>
+        </div>
+      </section>
+
+      <!-- 17. 渲染模式 & 路由规则：SSR/SSG/SPA + routeRules -->
+      <section class="guide-section">
+        <h2>1️⃣7️⃣ 渲染模式 & 路由规则：SSR/SSG/SPA + routeRules</h2>
+        <div class="content-box">
+          <p>Nuxt 既能 SSR，也能 SSG，也能纯 SPA。更强的是你可以对不同路由做不同策略（缓存、预渲染、禁用 SSR）。</p>
+          <pre v-pre class="code-block"><code>// nuxt.config.ts（示意）
+export default defineNuxtConfig({
+  routeRules: {
+    '/': { prerender: true },          // 预渲染首页（SSG）
+    '/docs/**': { swr: 60 },           // stale-while-revalidate
+    '/admin/**': { ssr: false }        // 后台页面走 SPA
+  }
+})</code></pre>
+          <ul class="feature-list">
+            <li><strong>prerender</strong>：适合文档/博客，速度快、SEO 好</li>
+            <li><strong>swr</strong>：适合内容更新但不那么频繁的页面</li>
+            <li><strong>ssr:false</strong>：适合强交互后台（减少 SSR 复杂度）</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 18. 错误处理与页面：error.vue / useError -->
+      <section class="guide-section">
+        <h2>1️⃣8️⃣ 错误处理与页面：error.vue / useError</h2>
+        <div class="content-box">
+          <h3>18.1 自定义错误页</h3>
+          <pre v-pre class="code-block"><code>// 根目录创建 error.vue
+&lt;template&gt;
+  &lt;div&gt;
+    &lt;h1&gt;出错了&lt;/h1&gt;
+    &lt;p&gt;{{ error?.statusCode }} - {{ error?.message }}&lt;/p&gt;
+    &lt;button @click=\"clearError({ redirect: '/' })\"&gt;回首页&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script setup&gt;
+const error = useError()
+&lt;/script&gt;</code></pre>
+          <p>
+            注意：上面代码块里出现了 <code>&#123;&#123; &#125;&#125;</code>，在本项目（Vue 模板）里会被解析。
+            如果你想复制粘贴到 Nuxt 项目里，这段是正确的；但在文档展示里请用 <code>v-pre</code> 或转义大括号。
+          </p>
+          <p><strong>本页面的代码块已加了 v-pre</strong>，因此不会触发解析。</p>
+        </div>
+      </section>
     </div>
   </div>
 </template>

@@ -31,10 +31,14 @@ export const useCounterStore = defineStore('counter', () => {
   };
 
   // reset: 重置计数
-  const $reset = () => {
+  const reset = () => {
     count.value = 0;
     history.value = [];
   };
+
+  // Pinia 约定：store.$reset()
+  // Setup Store 需要手动提供 $reset，这里让它与 reset 保持一致
+  const $reset = reset;
 
   // addAmount: 增加指定数量
   const addAmount = amount => {
@@ -50,6 +54,7 @@ export const useCounterStore = defineStore('counter', () => {
     doubleCount,
     increment,
     decrement,
+    reset,
     $reset,
     addAmount,
   };

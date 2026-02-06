@@ -31,6 +31,7 @@ const handleNavigate = (key) => {
 };
 
 provide('activeKey', activeKey);
+provide('navigateTo', handleNavigate);
 </script>
 
 <style scoped>

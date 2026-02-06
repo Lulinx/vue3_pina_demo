@@ -15,6 +15,8 @@ import AdvancedPiniaDemo from '../AdvancedPiniaDemo.vue';
 import CommunicationGuide from '../CommunicationGuide.vue';
 import TaroGuide from '../TaroGuide.vue';
 import NuxtGuide from '../NuxtGuide.vue';
+import FlutterGuide from '../FlutterGuide.vue';
+import TypeScriptGuide from '../TypeScriptGuide.vue';
 
 const props = defineProps({
   activeKey: {
@@ -25,6 +27,7 @@ const props = defineProps({
 
 const componentMap = {
   'home': HomePage,
+  'typescript': TypeScriptGuide,
   'pinia-counter': CounterDemo,
   'pinia-todo': TodoDemo,
   'pinia-user': UserDemo,
@@ -32,7 +35,8 @@ const componentMap = {
   'pinia-advanced': AdvancedPiniaDemo,
   'pinia-communication': CommunicationGuide,
   'taro': TaroGuide,
-  'nuxt': NuxtGuide
+  'nuxt': NuxtGuide,
+  'flutter': FlutterGuide
 };
 
 const currentComponent = computed(() => {
