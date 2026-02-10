@@ -1,7 +1,7 @@
 {
   "name": "vue3-pinia-demo",
   "version": "1.0.0",
-  "description": "Vue3 + Pinia 完整示例项目",
+  "description": "知识库",
   "main": "index.js",
   "type": "module",
   "scripts": {
