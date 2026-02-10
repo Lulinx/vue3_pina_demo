@@ -603,6 +603,391 @@ $border-radius: 4px;
         <li><strong>Stylus:</strong>语法灵活，学习成本较高</li>
       </ul>
     `
+  },
+  {
+    id: 9,
+    title: 'Q9: CSS Grid布局如何使用？',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['Grid', '布局', 'CSS3'],
+    content: `
+      <h5>Grid核心概念:</h5>
+      <ul>
+        <li><strong>容器:</strong>display: grid</li>
+        <li><strong>行和列:</strong>grid-template-rows/columns</li>
+        <li><strong>网格线:</strong>划分单元格</li>
+        <li><strong>单元格:</strong>grid-area</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>基本用法:</h5>
+      <div class="code-block"><pre>.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 100px auto;
+  gap: 20px;
+}
+
+/* 居中对齐 */
+.center {
+  display: grid;
+  place-items: center;
+}</pre></div>
+    `
+  },
+  {
+    id: 10,
+    title: 'Q10: 什么是层叠上下文？',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '腾讯',
+    tags: ['层叠上下文', 'z-index', ' stacking'],
+    content: `
+      <h5>触发条件:</h5>
+      <ul>
+        <li>position不为static且z-index不为auto</li>
+        <li>opacity小于1</li>
+        <li>transform不为none</li>
+        <li>filter不为none</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>层叠顺序:</h5>
+      <p>从底到顶: 背景边框 → 负z-index → block → float → inline → z-index:0 → 正z-index</p>
+    `
+  },
+  {
+    id: 11,
+    title: 'Q11: rem、em、px的区别',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '美团',
+    tags: ['rem', 'em', '单位'],
+    content: `
+      <h5>单位区别:</h5>
+      <ul>
+        <li><strong>px:</strong>绝对单位</li>
+        <li><strong>em:</strong>相对于父元素font-size</li>
+        <li><strong>rem:</strong>相对于根元素font-size</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>移动端适配:</h5>
+      <div class="code-block"><pre>html {
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+@media (max-width: 375px) {
+  html { font-size: 50%; }
+}</pre></div>
+    `
+  },
+  {
+    id: 12,
+    title: 'Q12: 如何实现水平垂直居中？',
+    difficulty: 'medium',
+    frequency: '★★★★★',
+    company: '阿里',
+    tags: ['居中', '布局', 'Flexbox'],
+    content: `
+      <h5>常用方法:</h5>
+      <ul>
+        <li>Flexbox: justify-content + align-items</li>
+        <li>Grid: place-items: center</li>
+        <li>绝对定位 + transform</li>
+        <li>绝对定位 + margin: auto</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>Flexbox:</h5>
+      <div class="code-block"><pre>.parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}</pre></div>
+    `
+  },
+  {
+    id: 13,
+    title: 'Q13: 什么是CSS Sprites？',
+    difficulty: 'easy',
+    frequency: '★★★☆☆',
+    company: '京东',
+    tags: ['雪碧图', '性能', '图片'],
+    content: `
+      <h5>雪碧图:</h5>
+      <p>将多个小图标合并到一张大图，通过background-position定位显示。</p>
+      <h5>优缺点:</h5>
+      <ul>
+        <li>减少HTTP请求</li>
+        <li>但维护困难，不适合高清屏</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>现代替代:</h5>
+      <p>SVG Sprite、Icon Font、Base64内联、HTTP/2多路复用</p>
+    `
+  },
+  {
+    id: 14,
+    title: 'Q14: 什么是重绘和重排？如何优化？',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['重绘', '重排', '性能'],
+    content: `
+      <h5>重排(reflow):</h5>
+      <p>布局变化，如宽高、位置改变。成本高。</p>
+      <h5>重绘(repaint):</h5>
+      <p>外观变化，如颜色。成本较低。</p>
+    `,
+    detailedAnswer: `
+      <h5>优化建议:</h5>
+      <ul>
+        <li>批量修改DOM，使用documentFragment</li>
+        <li>使用transform代替left/top</li>
+        <li>避免逐项修改样式</li>
+        <li>将复杂动画元素absolute/fixed脱离文档流</li>
+      </ul>
+    `
+  },
+  {
+    id: 15,
+    title: 'Q15: 伪类和伪元素的区别',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '小米',
+    tags: ['伪类', '伪元素', '选择器'],
+    content: `
+      <h5>伪类:</h5>
+      <p>选择元素的特定状态，如:hover、:first-child。单冒号。</p>
+      <h5>伪元素:</h5>
+      <p>创建不在DOM中的虚拟元素，如::before、::after。双冒号。</p>
+    `,
+    detailedAnswer: `
+      <h5>常用示例:</h5>
+      <div class="code-block"><pre>/* 伪类 */
+a:hover { color: red; }
+li:first-child { font-weight: bold; }
+
+/* 伪元素 */
+.box::before {
+  content: '';
+  display: block;
+}</pre></div>
+    `
+  },
+  {
+    id: 16,
+    title: 'Q16: 如何实现1px边框？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['1px', '移动端', 'Retina'],
+    content: `
+      <h5>问题原因:</h5>
+      <p>高清屏设备像素比(DPR)大于1，1px会显得过粗。</p>
+    `,
+    detailedAnswer: `
+      <h5>解决方案:</h5>
+      <div class="code-block"><pre>/* 方法1: transform缩放 */
+.border-1px {
+  position: relative;
+}
+.border-1px::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #000;
+  transform: scaleY(0.5);
+  transform-origin: 0 0;
+}
+
+/* 方法2: viewport + rem */
+/* 设置meta viewport的initial-scale=1/DPR */</pre></div>
+    `
+  },
+  {
+    id: 17,
+    title: 'Q17: 说说对SEO友好的HTML写法',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '百度',
+    tags: ['SEO', '语义化', 'HTML'],
+    content: `
+      <h5>SEO要点:</h5>
+      <ul>
+        <li>使用语义化标签</li>
+        <li>合理的标题层级h1-h6</li>
+        <li>img使用alt属性</li>
+        <li>meta描述和关键词</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>实践:</h5>
+      <div class="code-block"><pre>&lt;meta name="description" content="页面描述"&gt;
+&lt;meta name="keywords" content="关键词"&gt;
+&lt;title&gt;页面标题&lt;/title&gt;
+&lt;h1&gt;主标题只有一个&lt;/h1&gt;
+&lt;img src="x.jpg" alt="图片描述"&gt;</pre></div>
+    `
+  },
+  {
+    id: 18,
+    title: 'Q18: CSS变量(Custom Properties)如何使用？',
+    difficulty: 'easy',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['CSS变量', 'var', '主题'],
+    content: `
+      <h5>定义和使用:</h5>
+      <div class="code-block"><pre>:root {
+  --primary-color: #007bff;
+  --spacing: 8px;
+}
+
+.box {
+  color: var(--primary-color);
+  padding: var(--spacing);
+}</pre></div>
+    `,
+    detailedAnswer: `
+      <h5>主题切换:</h5>
+      <p>通过改变:root或父元素的变量值实现主题切换，无需重新编译CSS。</p>
+    `
+  },
+  {
+    id: 19,
+    title: 'Q19: 什么是margin重叠？如何解决？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '京东',
+    tags: ['margin', '重叠', 'BFC'],
+    content: `
+      <h5>重叠情况:</h5>
+      <ul>
+        <li>相邻块级元素垂直margin取最大值</li>
+        <li>父子元素margin-top传递</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>解决方式:</h5>
+      <ul>
+        <li>父元素overflow: hidden触发BFC</li>
+        <li>父元素padding替代子元素margin</li>
+        <li>使用flex/grid布局</li>
+      </ul>
+    `
+  },
+  {
+    id: 20,
+    title: 'Q20: 移动端适配方案有哪些？',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['移动端', '适配', 'viewport'],
+    content: `
+      <h5>常见方案:</h5>
+      <ul>
+        <li>rem + flexible</li>
+        <li>vw/vh</li>
+        <li>媒体查询</li>
+        <li>rem + vw 混合</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>vw方案:</h5>
+      <div class="code-block"><pre>html {
+  font-size: calc(100vw / 7.5);
+}
+/* 设计稿750px，1rem = 100px */</pre></div>
+    `
+  },
+  {
+    id: 21,
+    title: 'Q21: 什么是渐进增强和优雅降级？',
+    difficulty: 'easy',
+    frequency: '★★★☆☆',
+    company: '阿里',
+    tags: ['渐进增强', '优雅降级', '兼容'],
+    content: `
+      <h5>渐进增强:</h5>
+      <p>从基础功能开始，逐步增强，先保证低级浏览器可用。</p>
+      <h5>优雅降级:</h5>
+      <p>从完整功能开始，针对旧版浏览器做降级处理。</p>
+    `,
+    detailedAnswer: `
+      <h5>实践:</h5>
+      <p>现代开发更倾向渐进增强，先实现核心功能，再添加高级特性。</p>
+    `
+  },
+  {
+    id: 22,
+    title: 'Q22: 如何优化首屏加载？',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '美团',
+    tags: ['首屏', '性能', '优化'],
+    content: `
+      <h5>优化策略:</h5>
+      <ul>
+        <li>减少首屏资源体积</li>
+        <li>关键CSS内联</li>
+        <li>图片懒加载</li>
+        <li>骨架屏/loading</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>关键指标:</h5>
+      <p>FCP(首次内容绘制)、LCP(最大内容绘制)、TTI(可交互时间)</p>
+    `
+  },
+  {
+    id: 23,
+    title: 'Q23: 什么是FOUC？如何避免？',
+    difficulty: 'medium',
+    frequency: '★★☆☆☆',
+    company: '百度',
+    tags: ['FOUC', '闪烁', '样式'],
+    content: `
+      <h5>FOUC定义:</h5>
+      <p>Flash of Unstyled Content，无样式内容闪烁。</p>
+    `,
+    detailedAnswer: `
+      <h5>原因与解决:</h5>
+      <ul>
+        <li>CSS放body底部导致延迟</li>
+        <li>解决: 将CSS放head，关键CSS内联</li>
+      </ul>
+    `
+  },
+  {
+    id: 24,
+    title: 'Q24: 说说CSS的contain属性',
+    difficulty: 'medium',
+    frequency: '★★☆☆☆',
+    company: '华为',
+    tags: ['contain', '性能', '隔离'],
+    content: `
+      <h5>contain作用:</h5>
+      <p>告知浏览器元素及其子元素的渲染独立于文档其余部分，可优化性能。</p>
+      <h5>取值:</h5>
+      <ul>
+        <li>layout: 布局隔离</li>
+        <li>paint: 绘制隔离</li>
+        <li>size: 尺寸隔离</li>
+        <li>strict: 等价于layout paint size</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>应用场景:</h5>
+      <p>列表项、卡片组件等独立渲染区域，减少重排范围。</p>
+    `
   }
 ]
 </script>

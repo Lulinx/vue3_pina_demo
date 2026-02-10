@@ -40,11 +40,11 @@ import { ref, shallowRef, defineAsyncComponent } from 'vue'
 
 // 导航菜单配置
 const categories = [
-  { key: 'js', label: 'JavaScript', icon: '🟨', count: 10 },
-  { key: 'html-css', label: 'HTML/CSS', icon: '🎨', count: 8 },
-  { key: 'vue', label: 'Vue.js', icon: '💚', count: 7 },
-  { key: 'react', label: 'React', icon: '⚛️', count: 7 },
-  { key: 'build-tools', label: '构建工具', icon: '🔧', count: 7 }
+  { key: 'js', label: 'JavaScript', icon: '🟨', count: 24 },
+  { key: 'html-css', label: 'HTML/CSS', icon: '🎨', count: 24 },
+  { key: 'vue', label: 'Vue.js', icon: '💚', count: 24 },
+  { key: 'react', label: 'React', icon: '⚛️', count: 24 },
+  { key: 'build-tools', label: '构建工具', icon: '🔧', count: 24 }
 ]
 
 const activeCategory = ref('js')

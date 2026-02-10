@@ -838,6 +838,347 @@ export const useMainStore = defineStore('main', {
   }
 })</pre></div>
     `
+  },
+  {
+    id: 8,
+    title: 'Q8: v-if和v-show的区别',
+    difficulty: 'easy',
+    frequency: '★★★★★',
+    company: '字节跳动',
+    tags: ['v-if', 'v-show', '指令'],
+    content: `
+      <h5>区别:</h5>
+      <ul>
+        <li><strong>v-if:</strong>条件渲染，切换时销毁/重建DOM</li>
+        <li><strong>v-show:</strong>切换display，DOM始终存在</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>使用场景:</h5>
+      <ul>
+        <li>频繁切换用v-show</li>
+        <li>初始不渲染用v-if</li>
+      </ul>
+    `
+  },
+  {
+    id: 9,
+    title: 'Q9: Vue的nextTick原理',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['nextTick', '异步', 'DOM'],
+    content: `
+      <h5>nextTick作用:</h5>
+      <p>在DOM更新完成后执行回调，获取更新后的DOM。</p>
+    `,
+    detailedAnswer: `
+      <h5>实现原理:</h5>
+      <p>优先使用Promise.then，降级到setTimeout，将回调放入微任务队列。</p>
+    `
+  },
+  {
+    id: 10,
+    title: 'Q10: Vue的虚拟DOM和diff算法',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '美团',
+    tags: ['虚拟DOM', 'diff', '渲染'],
+    content: `
+      <h5>虚拟DOM:</h5>
+      <p>用JS对象描述真实DOM，通过diff比较变化，最小化DOM操作。</p>
+    `,
+    detailedAnswer: `
+      <h5>diff策略:</h5>
+      <ul>
+        <li>同层比较，不跨层级</li>
+        <li>key优化列表diff</li>
+        <li>双端比较算法</li>
+      </ul>
+    `
+  },
+  {
+    id: 11,
+    title: 'Q11: Vue Router的导航守卫',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '京东',
+    tags: ['Vue Router', '守卫', '权限'],
+    content: `
+      <h5>守卫类型:</h5>
+      <ul>
+        <li>全局守卫: beforeEach、beforeResolve、afterEach</li>
+        <li>路由独享: beforeEnter</li>
+        <li>组件内: beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>执行顺序:</h5>
+      <p>全局beforeEach → 路由beforeEnter → 组件beforeRouteEnter → beforeResolve → afterEach</p>
+    `
+  },
+  {
+    id: 12,
+    title: 'Q12: Vue的slot插槽',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '小米',
+    tags: ['slot', '插槽', '组件'],
+    content: `
+      <h5>插槽类型:</h5>
+      <ul>
+        <li>默认插槽</li>
+        <li>具名插槽</li>
+        <li>作用域插槽(带数据)</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>Vue3语法:</h5>
+      <div class="code-block"><pre>&lt;!-- 父组件 --&gt;
+&lt;template v-slot:header="slotProps"&gt;
+  {{ slotProps.user.name }}
+&lt;/template&gt;
+
+&lt;!-- 简写 --&gt;
+&lt;template #default&gt;内容&lt;/template&gt;</pre></div>
+    `
+  },
+  {
+    id: 13,
+    title: 'Q13: Vue3的Teleport',
+    difficulty: 'easy',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['Teleport', 'Vue3', '传送'],
+    content: `
+      <h5>Teleport作用:</h5>
+      <p>将组件内容渲染到DOM中的其他位置，如弹窗挂载到body。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>&lt;Teleport to="body"&gt;
+  &lt;div class="modal"&gt;弹窗内容&lt;/div&gt;
+&lt;/Teleport&gt;</pre></div>
+    `
+  },
+  {
+    id: 14,
+    title: 'Q14: Vue的key的作用',
+    difficulty: 'medium',
+    frequency: '★★★★★',
+    company: '字节跳动',
+    tags: ['key', 'diff', 'v-for'],
+    content: `
+      <h5>key的作用:</h5>
+      <p>帮助Vue识别节点身份，优化diff算法，避免错误的就地复用。</p>
+    `,
+    detailedAnswer: `
+      <h5>注意:</h5>
+      <ul>
+        <li>不要用index作为key(列表会重排时)</li>
+        <li>key应唯一且稳定</li>
+      </ul>
+    `
+  },
+  {
+    id: 15,
+    title: 'Q15: Vue的$set和$delete',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '阿里',
+    tags: ['$set', '响应式', 'Vue2'],
+    content: `
+      <h5>Vue2场景:</h5>
+      <p>对象新增属性、数组索引赋值，Vue2无法检测，需用Vue.set或this.$set。</p>
+    `,
+    detailedAnswer: `
+      <h5>Vue3:</h5>
+      <p>Proxy原生支持，无需$set。直接赋值即可响应式。</p>
+    `
+  },
+  {
+    id: 16,
+    title: 'Q16: Vue的指令实现原理',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '腾讯',
+    tags: ['指令', 'directive', '原理'],
+    content: `
+      <h5>自定义指令:</h5>
+      <div class="code-block"><pre>app.directive('focus', {
+  mounted(el) {
+    el.focus()
+  }
+})</pre></div>
+    `,
+    detailedAnswer: `
+      <h5>钩子:</h5>
+      <p>created、beforeMount、mounted、beforeUpdate、updated、beforeUnmount、unmounted</p>
+    `
+  },
+  {
+    id: 17,
+    title: 'Q17: Vue的mixins和组合式函数',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['mixins', '组合式', '复用'],
+    content: `
+      <h5>mixins问题:</h5>
+      <ul>
+        <li>命名冲突</li>
+        <li>来源不清晰</li>
+        <li>多mixin时难以维护</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>组合式函数:</h5>
+      <p>Vue3推荐使用composables(如useCounter)代替mixins，逻辑更清晰。</p>
+    `
+  },
+  {
+    id: 18,
+    title: 'Q18: Vue3的defineComponent',
+    difficulty: 'easy',
+    frequency: '★★☆☆☆',
+    company: '京东',
+    tags: ['defineComponent', 'TypeScript', 'Vue3'],
+    content: `
+      <h5>作用:</h5>
+      <p>为组件定义提供更好的TypeScript类型推断支持。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>import { defineComponent } from 'vue'
+export default defineComponent({
+  props: {
+    msg: String
+  },
+  setup(props) {
+    return {}
+  }
+})</pre></div>
+    `
+  },
+  {
+    id: 19,
+    title: 'Q19: Vue的异步组件',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '小米',
+    tags: ['异步组件', 'defineAsyncComponent', '懒加载'],
+    content: `
+      <h5>Vue3用法:</h5>
+      <div class="code-block"><pre>const AsyncComp = defineAsyncComponent(() =>
+  import('./components/AsyncComponent.vue')
+)</pre></div>
+    `,
+    detailedAnswer: `
+      <h5>高级用法:</h5>
+      <div class="code-block"><pre>defineAsyncComponent({
+  loader: () => import('./Foo.vue'),
+  loadingComponent: LoadingComponent,
+  delay: 200,
+  timeout: 3000
+})</pre></div>
+    `
+  },
+  {
+    id: 20,
+    title: 'Q20: Vue的v-model原理',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '华为',
+    tags: ['v-model', '双向绑定', '语法糖'],
+    content: `
+      <h5>本质:</h5>
+      <p>value属性 + input事件的语法糖。</p>
+    `,
+    detailedAnswer: `
+      <h5>自定义组件:</h5>
+      <div class="code-block"><pre>// Vue3 支持多个v-model
+&lt;MyComponent v-model:title="title" v-model:content="content" /&gt;
+
+// 子组件
+emit('update:title', newValue)</pre></div>
+    `
+  },
+  {
+    id: 21,
+    title: 'Q21: Vue的SSR原理',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '字节跳动',
+    tags: ['SSR', '服务端渲染', 'Nuxt'],
+    content: `
+      <h5>SSR流程:</h5>
+      <ol>
+        <li>服务器运行Vue应用生成HTML</li>
+        <li>将HTML发送给客户端</li>
+        <li>客户端激活(hydration)使交互生效</li>
+      </ol>
+    `,
+    detailedAnswer: `
+      <h5>注意点:</h5>
+      <p>生命周期只执行beforeCreate和created，避免依赖浏览器API，注意跨请求状态污染。</p>
+    `
+  },
+  {
+    id: 22,
+    title: 'Q22: Vue的transition动画',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '百度',
+    tags: ['transition', '动画', '过渡'],
+    content: `
+      <h5>过渡类名:</h5>
+      <ul>
+        <li>v-enter-from / v-enter-active / v-enter-to</li>
+        <li>v-leave-from / v-leave-active / v-leave-to</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>&lt;transition name="fade"&gt;
+  &lt;p v-if="show"&gt;hello&lt;/p&gt;
+&lt;/transition&gt;</pre></div>
+    `
+  },
+  {
+    id: 23,
+    title: 'Q23: Vue的provide/inject响应式',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '阿里',
+    tags: ['provide', 'inject', '响应式'],
+    content: `
+      <h5>Vue3:</h5>
+      <p>provide传ref/reactive可保持响应式，inject获取的也是响应式的。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>// 祖先
+provide('theme', ref('dark'))
+
+// 后代
+const theme = inject('theme')
+theme.value = 'light'</pre></div>
+    `
+  },
+  {
+    id: 24,
+    title: 'Q24: Vue的scoped样式原理',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['scoped', '样式隔离', 'CSS'],
+    content: `
+      <h5>实现:</h5>
+      <p>给元素添加data-v-xxx属性，选择器加上属性选择器实现隔离。</p>
+    `,
+    detailedAnswer: `
+      <h5>深度选择器:</h5>
+      <div class="code-block"><pre>/* Vue2 */
+::v-deep .child {}
+/* Vue3 */
+:deep(.child) {}</pre></div>
+    `
   }
 ]
 </script>

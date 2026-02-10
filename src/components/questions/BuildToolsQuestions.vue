@@ -329,7 +329,7 @@ const ExpensiveComponent = () => import('./ExpensiveComponent.js');
 
 // 使用
 &lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;
-  &lt;Route path="/home" component={Home} &rcub;&rcub; /&gt;
+  &lt;Route path="/home" component=&lcub;Home&rcub; /&gt;
 &lt;/Suspense&gt;</pre></div>
 
       <h5>提取公共代码:</h5>
@@ -380,7 +380,7 @@ optimization: {
 }</pre></div>
 
       <h5>按文件类型分割:</h5>
-      <div class="code-block"><pre">output: {
+      <div class="code-block"><pre>output: {
   filename: 'js/[name].[contenthash].js',
   chunkFilename: 'js/[name].[contenthash].js'
 },
@@ -533,7 +533,7 @@ module.exports = function({ types: t }) {
     `,
     detailedAnswer: `
       <h5>Loader优化:</h5>
-      <div class="code-block"><pre">module.exports = {
+      <div class="code-block"><pre>module.exports = {
   module: {
     rules: [
       {
@@ -547,7 +547,7 @@ module.exports = function({ types: t }) {
 };</pre></div>
 
       <h5>缓存优化:</h5>
-      <div class="code-block"><pre">// 文件缓存
+      <div class="code-block"><pre>// 文件缓存
 module.exports = {
   cache: {
     type: 'filesystem', // 文件系统缓存
@@ -566,7 +566,7 @@ module.exports = {
 }</pre></div>
 
       <h5>多进程优化:</h5>
-      <div class="code-block"><pre">const os = require('os');
+      <div class="code-block"><pre>const os = require('os');
 
 module.exports = {
   // thread-loader 并行处理
@@ -594,7 +594,7 @@ module.exports = {
 };</pre></div>
 
       <h5>打包优化:</h5>
-      <div class="code-block"><pre">module.exports = {
+      <div class="code-block"><pre>module.exports = {
   optimization: {
     // Tree Shaking
     usedExports: true,
@@ -628,7 +628,7 @@ module.exports = {
 };</pre></div>
 
       <h5>开发优化:</h5>
-      <div class="code-block"><pre">module.exports = {
+      <div class="code-block"><pre>module.exports = {
   devServer: {
     hot: true, // 热更新
     compress: true, // 启用gzip压缩
@@ -645,7 +645,7 @@ module.exports = {
 };</pre></div>
 
       <h5>构建分析:</h5>
-      <div class="code-block"><pre">// 使用webpack-bundle-analyzer
+      <div class="code-block"><pre>// 使用webpack-bundle-analyzer
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -695,7 +695,7 @@ module.exports = {
       </table>
 
       <h5>Rollup配置:</h5>
-      <div class="code-block"><pre">// rollup.config.js
+      <div class="code-block"><pre>// rollup.config.js
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
@@ -743,6 +743,348 @@ export default {
         <li><strong>简单项目:</strong>考虑Parcel或Vite</li>
         <li><strong>复杂应用:</strong>Webpack功能最全面</li>
       </ul>
+    `
+  },
+  {
+    id: 8,
+    title: 'Q8: Webpack的HMR热更新原理',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '字节跳动',
+    tags: ['HMR', '热更新', 'Webpack'],
+    content: `
+      <h5>HMR流程:</h5>
+      <ol>
+        <li>Webpack Compiler 编译输出到内存</li>
+        <li>Bundle Server 提供文件服务</li>
+        <li>HMR Server 推送更新给浏览器</li>
+        <li>HMR Runtime 接收更新并替换模块</li>
+      </ol>
+    `,
+    detailedAnswer: `
+      <h5>关键:</h5>
+      <p>通过WebSocket建立连接，文件变化时生成hash，推送更新消息，客户端拉取新模块执行替换。</p>
+    `
+  },
+  {
+    id: 9,
+    title: 'Q9: source map是什么？有哪些类型？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['source map', '调试', '映射'],
+    content: `
+      <h5>source map:</h5>
+      <p>将压缩/转换后的代码映射回原始源码，方便调试。</p>
+      <h5>类型:</h5>
+      <ul>
+        <li>source-map: 完整独立文件</li>
+        <li>inline-source-map: 内联到bundle</li>
+        <li>eval-source-map: 最快，但较大</li>
+        <li>cheap-module-source-map: 平衡选择</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>开发vs生产:</h5>
+      <p>开发用eval或cheap-module-eval，生产用source-map或hidden-source-map。</p>
+    `
+  },
+  {
+    id: 10,
+    title: 'Q10: 什么是Module Federation？',
+    difficulty: 'hard',
+    frequency: '★★☆☆☆',
+    company: '京东',
+    tags: ['Module Federation', '微前端', 'Webpack5'],
+    content: `
+      <h5>Module Federation:</h5>
+      <p>Webpack5特性，允许在运行时从不同构建中动态加载模块，实现微前端。</p>
+    `,
+    detailedAnswer: `
+      <h5>核心:</h5>
+      <p>多个独立应用可共享依赖，宿主应用可远程加载子应用暴露的模块。</p>
+    `
+  },
+  {
+    id: 11,
+    title: 'Q11: Vite的依赖预构建',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['Vite', '预构建', 'esbuild'],
+    content: `
+      <h5>预构建作用:</h5>
+      <ul>
+        <li>将CommonJS/UMD转为ESM</li>
+        <li>合并零散模块减少请求</li>
+        <li>使用esbuild极速编译</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>缓存:</h5>
+      <p>预构建结果缓存在node_modules/.vite，可通过optimizeDeps配置自定义。</p>
+    `
+  },
+  {
+    id: 12,
+    title: 'Q12: PostCSS是什么？常用插件？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '小米',
+    tags: ['PostCSS', 'CSS', 'Autoprefixer'],
+    content: `
+      <h5>PostCSS:</h5>
+      <p>用JavaScript转换CSS的工具，通过插件扩展功能。</p>
+      <h5>常用插件:</h5>
+      <ul>
+        <li>Autoprefixer: 自动添加厂商前缀</li>
+        <li>postcss-pxtorem: px转rem</li>
+        <li>cssnano: CSS压缩</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>// postcss.config.js
+module.exports = {
+  plugins: {
+    autoprefixer: {},
+    'postcss-pxtorem': { rootValue: 37.5 }
+  }
+}</pre></div>
+    `
+  },
+  {
+    id: 13,
+    title: 'Q13: Webpack的loader执行顺序',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['loader', '顺序', 'Webpack'],
+    content: `
+      <h5>顺序规则:</h5>
+      <p>从右到左、从下到上执行(类似管道，前一个输出作为后一个输入)。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>use: ['style-loader', 'css-loader', 'sass-loader']
+// 执行: sass-loader -> css-loader -> style-loader</pre></div>
+    `
+  },
+  {
+    id: 14,
+    title: 'Q14: 如何实现Webpack的按需加载',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '阿里',
+    tags: ['按需加载', '动态import', '代码分割'],
+    content: `
+      <h5>实现方式:</h5>
+      <p>使用动态import()语法，Webpack自动进行代码分割。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>// 路由懒加载
+const Home = () => import('./views/Home.vue');
+
+// 魔法注释指定chunk名称
+const Foo = () => import(/* webpackChunkName: "foo" */ './Foo');</pre></div>
+    `
+  },
+  {
+    id: 15,
+    title: 'Q15: esbuild的特点和优势',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '字节跳动',
+    tags: ['esbuild', '构建', '性能'],
+    content: `
+      <h5>esbuild:</h5>
+      <p>用Go编写的极速JavaScript打包器，Vite用其做依赖预构建。</p>
+      <h5>优势:</h5>
+      <ul>
+        <li>速度极快(10-100x)</li>
+        <li>支持TS、JSX</li>
+        <li>内置minify、sourcemap</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>限制:</h5>
+      <p>插件生态不如Webpack完善，部分高级特性未支持。</p>
+    `
+  },
+  {
+    id: 16,
+    title: 'Q16: Webpack的plugin开发',
+    difficulty: 'hard',
+    frequency: '★★☆☆☆',
+    company: '腾讯',
+    tags: ['Plugin', 'Webpack', '自定义'],
+    content: `
+      <h5>Plugin本质:</h5>
+      <p>具有apply方法的类，在Webpack生命周期的不同阶段执行逻辑。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>class MyPlugin {
+  apply(compiler) {
+    compiler.hooks.emit.tapAsync('MyPlugin', (compilation, callback) => {
+      // 在输出资源前处理
+      callback();
+    });
+  }
+}</pre></div>
+    `
+  },
+  {
+    id: 17,
+    title: 'Q17: 构建产物的hash策略',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['hash', '缓存', '构建'],
+    content: `
+      <h5>hash类型:</h5>
+      <ul>
+        <li><strong>hash:</strong>每次构建都变化</li>
+        <li><strong>chunkhash:</strong>同一chunk共享</li>
+        <li><strong>contenthash:</strong>根据内容变化(推荐)</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>缓存策略:</h5>
+      <p>使用contenthash实现长效缓存，内容不变则hash不变，充分利用浏览器缓存。</p>
+    `
+  },
+  {
+    id: 18,
+    title: 'Q18: Parcel的特点',
+    difficulty: 'easy',
+    frequency: '★★☆☆☆',
+    company: '百度',
+    tags: ['Parcel', '零配置', '构建'],
+    content: `
+      <h5>Parcel:</h5>
+      <p>零配置的Web应用打包器，开箱即用。</p>
+      <h5>特点:</h5>
+      <ul>
+        <li>零配置</li>
+        <li>内置HMR</li>
+        <li>支持多种资源</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <p>适合简单项目，复杂需求可能受限。</p>
+    `
+  },
+  {
+    id: 19,
+    title: 'Q19: 如何优化生产环境打包体积',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '京东',
+    tags: ['打包', '体积', '优化'],
+    content: `
+      <h5>优化手段:</h5>
+      <ul>
+        <li>Tree Shaking</li>
+        <li>代码分割</li>
+        <li>压缩混淆</li>
+        <li>分析包体积</li>
+        <li>按需引入</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>分析工具:</h5>
+      <p>webpack-bundle-analyzer、rollup-plugin-visualizer查看各模块占比。</p>
+    `
+  },
+  {
+    id: 20,
+    title: 'Q20: Webpack的externals配置',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '小米',
+    tags: ['externals', 'CDN', '外部依赖'],
+    content: `
+      <h5>externals:</h5>
+      <p>将依赖从bundle中排除，通过script标签或CDN引入。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>externals: {
+  'vue': 'Vue',
+  'vue-router': 'VueRouter'
+}</pre></div>
+    `
+  },
+  {
+    id: 21,
+    title: 'Q21: Vite和Create React App的对比',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['Vite', 'CRA', '脚手架'],
+    content: `
+      <h5>CRA:</h5>
+      <p>基于Webpack，功能完善但启动和HMR较慢。</p>
+      <h5>Vite:</h5>
+      <p>基于ESM，秒级启动，HMR极快，生态发展迅速。</p>
+    `,
+    detailedAnswer: `
+      <p>新项目推荐Vite，老项目迁移需评估兼容性。</p>
+    `
+  },
+  {
+    id: 22,
+    title: 'Q22: 什么是动态polyfill',
+    difficulty: 'medium',
+    frequency: '★★☆☆☆',
+    company: '阿里',
+    tags: ['polyfill', '兼容', '按需'],
+    content: `
+      <h5>动态polyfill:</h5>
+      <p>根据用户浏览器User-Agent，只加载该浏览器需要的polyfill，减少体积。</p>
+    `,
+    detailedAnswer: `
+      <h5>实现:</h5>
+      <p>polyfill.io等服务，或使用@babel/preset-env的useBuiltIns: usage按需引入。</p>
+    `
+  },
+  {
+    id: 23,
+    title: 'Q23: Webpack的resolve配置',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '字节跳动',
+    tags: ['resolve', '路径', '别名'],
+    content: `
+      <h5>常用配置:</h5>
+      <ul>
+        <li>alias: 路径别名</li>
+        <li>extensions: 自动解析扩展名</li>
+        <li>modules: 模块搜索目录</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>resolve: {
+  alias: { '@': path.resolve(__dirname, 'src') },
+  extensions: ['.js', '.vue', '.json']
+}</pre></div>
+    `
+  },
+  {
+    id: 24,
+    title: 'Q24: 前端构建多环境配置',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['多环境', 'env', '配置'],
+    content: `
+      <h5>实现方式:</h5>
+      <ul>
+        <li>.env.development / .env.production</li>
+        <li>process.env.NODE_ENV</li>
+        <li>自定义变量VITE_/VUE_APP_</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>Vite:</h5>
+      <p>使用import.meta.env访问，只有VITE_前缀的变量会暴露给客户端。</p>
     `
   }
 ]

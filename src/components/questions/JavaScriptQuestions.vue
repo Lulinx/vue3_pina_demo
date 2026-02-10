@@ -672,6 +672,402 @@ class Singleton {
   }
 }</pre></div>
     `
+  },
+  {
+    id: 11,
+    title: 'Q11: 谈谈Map和Object的区别',
+    difficulty: 'easy',
+    frequency: '★★★★☆',
+    company: '阿里',
+    tags: ['Map', 'Object', '数据结构'],
+    content: `
+      <h5>主要区别:</h5>
+      <ul>
+        <li><strong>键类型:</strong>Map的键可以是任意类型，Object的键只能是字符串或Symbol</li>
+        <li><strong>键顺序:</strong>Map保持插入顺序</li>
+        <li><strong>大小:</strong>Map有size属性</li>
+        <li><strong>迭代:</strong>Map可直接迭代</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>使用示例:</h5>
+      <div class="code-block"><pre>// Map可以使用对象作为键
+const map = new Map();
+const obj = {};
+map.set(obj, 'value');
+map.get(obj); // 'value'
+
+// Object的键会被转为字符串
+const o = {};
+o[obj] = 'value';
+o['[object Object]']; // 'value'
+
+// Map的迭代
+for (const [key, value] of map) {
+  console.log(key, value);
+}</pre></div>
+    `
+  },
+  {
+    id: 12,
+    title: 'Q12: 什么是Symbol？有什么用途？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['Symbol', 'ES6', '唯一性'],
+    content: `
+      <h5>Symbol特点:</h5>
+      <ul>
+        <li>独一无二的值，即使描述相同</li>
+        <li>不能与其它类型运算</li>
+        <li>可用作对象属性键，防止冲突</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>Symbol使用:</h5>
+      <div class="code-block"><pre>const s1 = Symbol('foo');
+const s2 = Symbol('foo');
+s1 === s2; // false
+
+// 防止属性名冲突
+const MY_KEY = Symbol();
+const obj = {
+  [MY_KEY]: 'secret'
+};
+
+// 内置Symbol
+Symbol.iterator // 定义迭代器
+Symbol.toStringTag // 定义Object.prototype.toString的返回值</pre></div>
+    `
+  },
+  {
+    id: 13,
+    title: 'Q13: 解释call、apply、bind的区别',
+    difficulty: 'medium',
+    frequency: '★★★★★',
+    company: '字节跳动',
+    tags: ['call', 'apply', 'bind', 'this'],
+    content: `
+      <h5>三者区别:</h5>
+      <ul>
+        <li><strong>call:</strong>立即执行，参数逐个传入</li>
+        <li><strong>apply:</strong>立即执行，参数以数组传入</li>
+        <li><strong>bind:</strong>返回新函数，不立即执行</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>使用对比:</h5>
+      <div class="code-block"><pre>function greet(greeting, punctuation) {
+  console.log(greeting + ', ' + this.name + punctuation);
+}
+
+const obj = { name: 'Tom' };
+
+greet.call(obj, 'Hello', '!');    // Hello, Tom!
+greet.apply(obj, ['Hi', '.']);    // Hi, Tom.
+const bound = greet.bind(obj, 'Hey');
+bound('~');                       // Hey, Tom~</pre></div>
+    `
+  },
+  {
+    id: 14,
+    title: 'Q14: 如何实现数组扁平化？',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '京东',
+    tags: ['数组', '扁平化', '递归'],
+    content: `
+      <h5>扁平化方法:</h5>
+      <ul>
+        <li>flat() 方法</li>
+        <li>递归实现</li>
+        <li>reduce实现</li>
+        <li>扩展运算符</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>实现方式:</h5>
+      <div class="code-block"><pre>// 方法1: flat
+[1, [2, [3]]].flat(Infinity);
+
+// 方法2: 递归
+function flatten(arr) {
+  return arr.reduce((acc, cur) =>
+    Array.isArray(cur) ? [...acc, ...flatten(cur)] : [...acc, cur], []);
+}
+
+// 方法3: 指定层级
+function flattenDepth(arr, depth = 1) {
+  return depth > 0
+    ? arr.reduce((acc, cur) =>
+        acc.concat(Array.isArray(cur) ? flattenDepth(cur, depth - 1) : cur), [])
+    : arr.slice();
+}</pre></div>
+    `
+  },
+  {
+    id: 15,
+    title: 'Q15: 谈谈垃圾回收机制',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '腾讯',
+    tags: ['垃圾回收', '内存', 'V8'],
+    content: `
+      <h5>回收策略:</h5>
+      <ul>
+        <li><strong>引用计数:</strong>跟踪引用次数，为0时回收</li>
+        <li><strong>标记清除:</strong>从根出发标记可达对象，清除未标记的</li>
+        <li><strong>分代回收:</strong>新生代和老生代不同策略</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>V8引擎回收:</h5>
+      <ul>
+        <li><strong>新生代:</strong>Scavenge算法，复制存活对象</li>
+        <li><strong>老生代:</strong>标记-清除+标记-整理</li>
+        <li><strong>增量标记:</strong>避免长时间停顿</li>
+      </ul>
+    `
+  },
+  {
+    id: 16,
+    title: 'Q16: 什么是柯里化？如何实现？',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['柯里化', '函数式', '高阶函数'],
+    content: `
+      <h5>柯里化定义:</h5>
+      <p>将多参数函数转换为一系列单参数函数的技术。</p>
+    `,
+    detailedAnswer: `
+      <h5>实现:</h5>
+      <div class="code-block"><pre>function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    }
+    return (...nextArgs) => curried.apply(this, [...args, ...nextArgs]);
+  };
+}
+
+// 使用
+const add = (a, b, c) => a + b + c;
+const curriedAdd = curry(add);
+curriedAdd(1)(2)(3);  // 6
+curriedAdd(1, 2)(3);  // 6</pre></div>
+    `
+  },
+  {
+    id: 17,
+    title: 'Q17: 类型判断有哪些方式？',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '小米',
+    tags: ['typeof', 'instanceof', '类型判断'],
+    content: `
+      <h5>判断方式:</h5>
+      <ul>
+        <li><strong>typeof:</strong>基本类型，null和数组判断不准</li>
+        <li><strong>instanceof:</strong>原型链判断</li>
+        <li><strong>Object.prototype.toString:</strong>最准确</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>通用类型判断:</h5>
+      <div class="code-block"><pre>function getType(value) {
+  return Object.prototype.toString.call(value).slice(8, -1);
+}
+getType([]);        // 'Array'
+getType(null);      // 'Null'
+getType(new Map()); // 'Map'</pre></div>
+    `
+  },
+  {
+    id: 18,
+    title: 'Q18: 解释WeakMap和WeakSet',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '百度',
+    tags: ['WeakMap', 'WeakSet', '弱引用'],
+    content: `
+      <h5>特点:</h5>
+      <ul>
+        <li>键/值必须是对象</li>
+        <li>弱引用，不影响垃圾回收</li>
+        <li>不可遍历，无size属性</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>应用场景:</h5>
+      <p>存储DOM节点的元数据、私有数据存储，当DOM被移除时自动释放。</p>
+    `
+  },
+  {
+    id: 19,
+    title: 'Q19: 手写new操作符',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['new', '原型', '继承'],
+    content: `
+      <h5>new做了什么:</h5>
+      <ol>
+        <li>创建新对象</li>
+        <li>设置原型链</li>
+        <li>执行构造函数</li>
+        <li>返回对象(构造函数无return或return非对象时)</li>
+      </ol>
+    `,
+    detailedAnswer: `
+      <h5>实现:</h5>
+      <div class="code-block"><pre>function myNew(Constructor, ...args) {
+  const obj = Object.create(Constructor.prototype);
+  const result = Constructor.apply(obj, args);
+  return typeof result === 'object' &amp;&amp; result !== null ? result : obj;
+}</pre></div>
+    `
+  },
+  {
+    id: 20,
+    title: 'Q20: 什么是尾调用优化？',
+    difficulty: 'hard',
+    frequency: '★★☆☆☆',
+    company: '阿里',
+    tags: ['尾调用', '递归', '优化'],
+    content: `
+      <h5>尾调用:</h5>
+      <p>函数的最后一步是调用另一个函数，可优化调用栈。</p>
+    `,
+    detailedAnswer: `
+      <h5>尾递归优化:</h5>
+      <div class="code-block"><pre>// 普通递归 - 可能栈溢出
+function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+
+// 尾递归
+function factorial(n, acc = 1) {
+  if (n <= 1) return acc;
+  return factorial(n - 1, n * acc);
+}</pre></div>
+    `
+  },
+  {
+    id: 21,
+    title: 'Q21: 谈谈迭代器和生成器',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '腾讯',
+    tags: ['Iterator', 'Generator', '迭代'],
+    content: `
+      <h5>迭代器协议:</h5>
+      <p>实现next()方法，返回{value, done}的对象。</p>
+      <h5>生成器:</h5>
+      <p>function*声明的函数，自动实现迭代器协议。</p>
+    `,
+    detailedAnswer: `
+      <h5>示例:</h5>
+      <div class="code-block"><pre>// 自定义迭代器
+const obj = {
+  *[Symbol.iterator]() {
+    yield 1;
+    yield 2;
+  }
+};
+
+// 生成器
+function* gen() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+[...gen()]; // [1, 2]</pre></div>
+    `
+  },
+  {
+    id: 22,
+    title: 'Q22: 解释JavaScript的执行上下文',
+    difficulty: 'hard',
+    frequency: '★★★★☆',
+    company: '美团',
+    tags: ['执行上下文', '作用域', '变量提升'],
+    content: `
+      <h5>执行上下文类型:</h5>
+      <ul>
+        <li>全局执行上下文</li>
+        <li>函数执行上下文</li>
+        <li>eval执行上下文</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>包含内容:</h5>
+      <ul>
+        <li><strong>变量对象:</strong>变量、函数声明</li>
+        <li><strong>作用域链:</strong>当前+父级变量对象</li>
+        <li><strong>this绑定</strong></li>
+      </ul>
+    `
+  },
+  {
+    id: 23,
+    title: 'Q23: 如何实现继承？各种方式优缺点？',
+    difficulty: 'hard',
+    frequency: '★★★★★',
+    company: '京东',
+    tags: ['继承', '原型链', 'ES6'],
+    content: `
+      <h5>继承方式:</h5>
+      <ul>
+        <li>原型链继承</li>
+        <li>构造函数继承</li>
+        <li>组合继承</li>
+        <li>寄生组合继承</li>
+        <li>ES6 class extends</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>寄生组合继承(最推荐):</h5>
+      <div class="code-block"><pre>function inherit(Child, Parent) {
+  Child.prototype = Object.create(Parent.prototype);
+  Child.prototype.constructor = Child;
+}
+
+function Parent(name) {
+  this.name = name;
+}
+function Child(name, age) {
+  Parent.call(this, name);
+  this.age = age;
+}
+inherit(Child, Parent);</pre></div>
+    `
+  },
+  {
+    id: 24,
+    title: 'Q24: 解释==和===的区别，以及类型转换规则',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '小米',
+    tags: ['相等', '类型转换', '隐式转换'],
+    content: `
+      <h5>区别:</h5>
+      <ul>
+        <li><strong>==:</strong>会进行类型转换</li>
+        <li><strong>===:</strong>严格相等，不转换</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>==转换规则:</h5>
+      <div class="code-block"><pre>null == undefined  // true
+'1' == 1           // true
+true == 1          // true
+[] == false        // true
+[] == ![]          // true
+
+// 建议始终使用===</pre></div>
+    `
   }
 ]
 </script>

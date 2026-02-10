@@ -790,6 +790,321 @@ function FileUpload() {
   );
 }</pre></div>
     `
+  },
+  {
+    id: 8,
+    title: 'Q8: useRef和useState的区别',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['useRef', 'useState', 'Hooks'],
+    content: `
+      <h5>区别:</h5>
+      <ul>
+        <li><strong>useState:</strong>改变触发重渲染</li>
+        <li><strong>useRef:</strong>改变不触发重渲染，跨渲染保持值</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>useRef用途:</h5>
+      <ul>
+        <li>访问DOM元素</li>
+        <li>存储定时器ID、上一次的值等</li>
+      </ul>
+    `
+  },
+  {
+    id: 9,
+    title: 'Q9: React的Fiber架构',
+    difficulty: 'hard',
+    frequency: '★★★☆☆',
+    company: '腾讯',
+    tags: ['Fiber', '调度', '并发'],
+    content: `
+      <h5>Fiber是什么:</h5>
+      <p>React 16引入的新的 reconciliation 引擎，将渲染工作分割成小单元，可中断和恢复。</p>
+    `,
+    detailedAnswer: `
+      <h5>特性:</h5>
+      <ul>
+        <li>可中断的渲染</li>
+        <li>优先级调度</li>
+        <li>Concurrent Mode 基础</li>
+      </ul>
+    `
+  },
+  {
+    id: 10,
+    title: 'Q10: useReducer的使用场景',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['useReducer', '状态', 'Hooks'],
+    content: `
+      <h5>适用场景:</h5>
+      <ul>
+        <li>state逻辑复杂</li>
+        <li>下一个state依赖前一个</li>
+        <li>需要深层传递更新函数</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>const [state, dispatch] = useReducer(reducer, initialState);
+dispatch({ type: 'INCREMENT' });</pre></div>
+    `
+  },
+  {
+    id: 11,
+    title: 'Q11: React的Portal',
+    difficulty: 'easy',
+    frequency: '★★★☆☆',
+    company: '京东',
+    tags: ['Portal', 'DOM', '弹窗'],
+    content: `
+      <h5>Portal作用:</h5>
+      <p>将子组件渲染到DOM树中的其他节点，常用于模态框、提示框。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>ReactDOM.createPortal(child, container)</pre></div>
+    `
+  },
+  {
+    id: 12,
+    title: 'Q12: useCallback和useMemo的区别',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '小米',
+    tags: ['useCallback', 'useMemo', '性能'],
+    content: `
+      <h5>区别:</h5>
+      <ul>
+        <li><strong>useMemo:</strong>缓存计算结果</li>
+        <li><strong>useCallback:</strong>缓存函数引用，等价于useMemo(() =&gt; fn, deps)</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>使用建议:</h5>
+      <p>子组件接收函数props且用React.memo包装时，父组件用useCallback。</p>
+    `
+  },
+  {
+    id: 13,
+    title: 'Q13: React的严格模式做了什么',
+    difficulty: 'easy',
+    frequency: '★★☆☆☆',
+    company: '华为',
+    tags: ['StrictMode', '开发', '检测'],
+    content: `
+      <h5>StrictMode:</h5>
+      <ul>
+        <li>检测不安全的生命周期</li>
+        <li>检测过时的API</li>
+        <li>检测意外的副作用(故意双重调用)</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <p>仅开发模式生效，生产构建不影响。</p>
+    `
+  },
+  {
+    id: 14,
+    title: 'Q14: React的合成事件',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '字节跳动',
+    tags: ['合成事件', '事件', '委托'],
+    content: `
+      <h5>合成事件:</h5>
+      <p>React封装的跨浏览器事件系统，统一接口，事件委托到root。</p>
+    `,
+    detailedAnswer: `
+      <h5>特点:</h5>
+      <ul>
+        <li>事件委托，性能更好</li>
+        <li>自动清理，防止内存泄漏</li>
+        <li>event.persist()可保留事件对象</li>
+      </ul>
+    `
+  },
+  {
+    id: 15,
+    title: 'Q15: React 18的新特性',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '阿里',
+    tags: ['React 18', '并发', '新特性'],
+    content: `
+      <h5>主要特性:</h5>
+      <ul>
+        <li>自动批量更新</li>
+        <li>Concurrent渲染</li>
+        <li>useTransition、useDeferredValue</li>
+        <li>createRoot API</li>
+      </ul>
+    `,
+    detailedAnswer: `
+      <h5>Suspense:</h5>
+      <p>支持数据获取的Suspense，服务端流式渲染。</p>
+    `
+  },
+  {
+    id: 16,
+    title: 'Q16: 什么是React的key，为什么重要',
+    difficulty: 'medium',
+    frequency: '★★★★★',
+    company: '腾讯',
+    tags: ['key', '列表', 'diff'],
+    content: `
+      <h5>key作用:</h5>
+      <p>帮助React识别列表项身份，在重排时正确复用和更新。</p>
+    `,
+    detailedAnswer: `
+      <h5>最佳实践:</h5>
+      <ul>
+        <li>使用稳定唯一ID，不用index(列表会重排时)</li>
+        <li>key在兄弟间唯一即可</li>
+      </ul>
+    `
+  },
+  {
+    id: 17,
+    title: 'Q17: React的Error Boundary',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '美团',
+    tags: ['Error Boundary', '错误处理', 'componentDidCatch'],
+    content: `
+      <h5>Error Boundary:</h5>
+      <p>捕获子组件树中的JS错误，显示备用UI，防止整个应用崩溃。</p>
+    `,
+    detailedAnswer: `
+      <h5>限制:</h5>
+      <ul>
+        <li>仅捕获子组件错误</li>
+        <li>不捕获事件处理器、异步、服务端渲染错误</li>
+      </ul>
+    `
+  },
+  {
+    id: 18,
+    title: 'Q18: React的Context性能问题',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '京东',
+    tags: ['Context', '性能', '重渲染'],
+    content: `
+      <h5>问题:</h5>
+      <p>Provider的value变化时，所有消费该Context的组件都会重渲染。</p>
+    `,
+    detailedAnswer: `
+      <h5>优化:</h5>
+      <ul>
+        <li>拆分Context，减少影响范围</li>
+        <li>使用useMemo缓存value</li>
+        <li>考虑状态管理库</li>
+      </ul>
+    `
+  },
+  {
+    id: 19,
+    title: 'Q19: useLayoutEffect的使用场景',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '小米',
+    tags: ['useLayoutEffect', 'DOM', 'Hooks'],
+    content: `
+      <h5>与useEffect区别:</h5>
+      <p>useLayoutEffect在DOM变更后、浏览器绘制前同步执行。</p>
+    `,
+    detailedAnswer: `
+      <h5>适用:</h5>
+      <p>需要同步读取DOM布局或防止闪烁时使用，如测量元素、调整滚动位置。</p>
+    `
+  },
+  {
+    id: 20,
+    title: 'Q20: React的ref转发(forwardRef)',
+    difficulty: 'medium',
+    frequency: '★★★☆☆',
+    company: '华为',
+    tags: ['forwardRef', 'ref', 'HOC'],
+    content: `
+      <h5>forwardRef:</h5>
+      <p>将ref传递给子组件，使父组件能访问子组件的DOM或实例。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>const FancyInput = forwardRef((props, ref) => {
+  return &lt;input ref={ref} {...props} /&gt;;
+});</pre></div>
+    `
+  },
+  {
+    id: 21,
+    title: 'Q21: React的useImperativeHandle',
+    difficulty: 'medium',
+    frequency: '★★☆☆☆',
+    company: '百度',
+    tags: ['useImperativeHandle', 'ref', '暴露方法'],
+    content: `
+      <h5>作用:</h5>
+      <p>自定义通过ref暴露给父组件的实例值，与forwardRef配合使用。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>useImperativeHandle(ref, () => ({
+  focus: () => inputRef.current.focus()
+}));</pre></div>
+    `
+  },
+  {
+    id: 22,
+    title: 'Q22: React Server Components',
+    difficulty: 'hard',
+    frequency: '★★☆☆☆',
+    company: '字节跳动',
+    tags: ['RSC', '服务端组件', 'React'],
+    content: `
+      <h5>RSC:</h5>
+      <p>在服务端渲染的组件，0 JS发送到客户端，可直连数据库。</p>
+    `,
+    detailedAnswer: `
+      <h5>限制:</h5>
+      <p>不能使用useState、useEffect等客户端Hook，不能使用浏览器API。</p>
+    `
+  },
+  {
+    id: 23,
+    title: 'Q23: React的useId',
+    difficulty: 'easy',
+    frequency: '★★☆☆☆',
+    company: '阿里',
+    tags: ['useId', 'SSR', '可访问性'],
+    content: `
+      <h5>useId:</h5>
+      <p>生成在服务端和客户端稳定的唯一ID，用于关联label和input等。</p>
+    `,
+    detailedAnswer: `
+      <div class="code-block"><pre>const id = useId();
+return &lt;&gt;&lt;label htmlFor=&lcub;id&rcub;&gt;Name&lt;/label&gt;&lt;input id=&lcub;id&rcub; /&gt;&lt;/&gt;;</pre></div>
+    `
+  },
+  {
+    id: 24,
+    title: 'Q24: React的Suspense和lazy',
+    difficulty: 'medium',
+    frequency: '★★★★☆',
+    company: '腾讯',
+    tags: ['Suspense', 'lazy', '代码分割'],
+    content: `
+      <h5>用法:</h5>
+      <div class="code-block"><pre>const LazyComp = lazy(() => import('./Comp'));
+&lt;Suspense fallback=&lcub;&lt;Loading /&gt;&rcub;&gt;
+  &lt;LazyComp /&gt;
+&lt;/Suspense&gt;</pre></div>
+    `,
+    detailedAnswer: `
+      <h5>原理:</h5>
+      <p>lazy返回的组件在加载时throw Promise，Suspense捕获并显示fallback。</p>
+    `
   }
 ]
 </script>
